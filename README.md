@@ -1,6 +1,6 @@
 # PermissionManager
 ***0. demo效果图***
-
+![demo](https://github.com/WangWei1993/PermissionManager/blob/master/permission.gif)
 
 
 兼容iOS8以上
