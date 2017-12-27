@@ -55,8 +55,11 @@ public protocol WWPermissionManagerInterface {
 
 ***设计思路、注意事项***
 > 设计思路：将所有权限类型定义成一个枚举，并将每一个权限类都实现协议WWPermissionInterface。权限管理者类实现的协议WWPermissionManagerInterface，权限管理者Manager会根据传入的枚举类型进行区分。
+
 > 所有权限请求request都是异步回调的，所以可以在用户选择完权限后进行回调。
+
 > 在Info.plist中加入权限对应的key，否非会出现奔溃的现象。
+
 > 位置获取权限注意事项：
 在iOS11之后，Privacy - Location Always Usage Description被降级为Privacy - Location When In Use Usage Description。
 新添加Privacy - Location Always and When In Use Usage Description隐私权限，在使用后台定位的时候进行操作：Targets - Capabilities - Background Modes - location Update 这一项打钩
