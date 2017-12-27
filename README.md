@@ -20,7 +20,7 @@ public enum WWRequestPermissionType {
 
 
 
-####基本方法介绍：
+***基本方法介绍***
 
 ```swift
 /// 权限管理者接口
@@ -53,10 +53,13 @@ public protocol WWPermissionManagerInterface {
 }
 ```
 
-####使用方法：
+***使用方法***
+
+> 所有权限请求request都是异步的
+
 ```swift
 
-// 请求相册权限(异步)
+// 请求相册权限
 WWPermissionsManager().request(.photoLibrary, with: {
     print("申请了相册权限")
 })
