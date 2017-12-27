@@ -23,7 +23,7 @@ public enum WWRequestPermissionType {
 }
 
 class WWPermissionsManager: WWPermissionManagerInterface {
-    
+
     func isNotDetermined(_ permission: WWRequestPermissionType) -> Bool {
         return getManagerForPermission(permission).isNotDetermined()
     }
@@ -86,12 +86,29 @@ class WWPermissionsManager: WWPermissionManagerInterface {
 /// 权限管理者接口
 public protocol WWPermissionManagerInterface {
     
+    /**
+             用户还未决定
+     param: permission 权限类型
+     */
     func isNotDetermined(_ permission: WWRequestPermissionType) -> Bool
     
+    /**
+             用户没有权限或者拒绝
+             param: permission 权限类型
+     
+             */
     func isRestrictOrDenied(_ permission: WWRequestPermissionType) -> Bool
     
+    /**
+             用户允许
+             param: permission 权限类型
+     */
     func isAuthorized(_ permission: WWRequestPermissionType) -> Bool
     
+    /**
+             用户请求权限
+             param: permission 权限类型
+     */
     func request(_ permission: WWRequestPermissionType, with complectionHandler: @escaping ()->())
 }
 
