@@ -1,7 +1,7 @@
 # PermissionManager
 APP权限管理类
 
-#### 支持的权限类型
+***支持的权限类型***
 ```swift
 /// Permission Types
 public enum WWRequestPermissionType {
@@ -17,6 +17,7 @@ public enum WWRequestPermissionType {
     case calendar
 }
 ```
+
 
 
 ####基本方法介绍：
