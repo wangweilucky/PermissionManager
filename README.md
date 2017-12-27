@@ -1,5 +1,9 @@
 # PermissionManager
-APP权限管理类
+***0. demo效果图***
+
+
+
+兼容iOS8以上
 
 ***1. 支持的权限类型***
 ```swift
