@@ -7,18 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A1B79A31FF36D2D00BF30C6 /* WWRequestPermissionLocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B79A21FF36D2D00BF30C6 /* WWRequestPermissionLocationHandler.swift */; };
 		4A38EFF51FEA7BA000F8D480 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A38EFF41FEA7BA000F8D480 /* AppDelegate.swift */; };
 		4A38EFF71FEA7BA000F8D480 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A38EFF61FEA7BA000F8D480 /* ViewController.swift */; };
 		4A38EFFA1FEA7BA000F8D480 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A38EFF81FEA7BA000F8D480 /* Main.storyboard */; };
 		4A38EFFC1FEA7BA000F8D480 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A38EFFB1FEA7BA000F8D480 /* Assets.xcassets */; };
 		4A38EFFF1FEA7BA000F8D480 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A38EFFD1FEA7BA000F8D480 /* LaunchScreen.storyboard */; };
-		4A38F0071FEA7BD500F8D480 /* WWPermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A38F0061FEA7BD500F8D480 /* WWPermissionManager.swift */; };
-		4A38F0091FEBB3CC00F8D480 /* WWPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A38F0081FEBB3CC00F8D480 /* WWPermissions.swift */; };
+		4AE2CCAE1FF3A0F7004108A6 /* WWPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCAB1FF3A0F6004108A6 /* WWPermissions.swift */; };
+		4AE2CCAF1FF3A0F7004108A6 /* WWRequestPermissionLocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCAC1FF3A0F6004108A6 /* WWRequestPermissionLocationHandler.swift */; };
+		4AE2CCB01FF3A0F7004108A6 /* WWPermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCAD1FF3A0F6004108A6 /* WWPermissionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4A1B79A21FF36D2D00BF30C6 /* WWRequestPermissionLocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWRequestPermissionLocationHandler.swift; sourceTree = "<group>"; };
 		4A38EFF11FEA7BA000F8D480 /* WWRequestPermission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWRequestPermission.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A38EFF41FEA7BA000F8D480 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A38EFF61FEA7BA000F8D480 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,8 +25,9 @@
 		4A38EFFB1FEA7BA000F8D480 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A38EFFE1FEA7BA000F8D480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A38F0001FEA7BA000F8D480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A38F0061FEA7BD500F8D480 /* WWPermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWPermissionManager.swift; sourceTree = "<group>"; };
-		4A38F0081FEBB3CC00F8D480 /* WWPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWPermissions.swift; sourceTree = "<group>"; };
+		4AE2CCAB1FF3A0F6004108A6 /* WWPermissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWPermissions.swift; sourceTree = "<group>"; };
+		4AE2CCAC1FF3A0F6004108A6 /* WWRequestPermissionLocationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWRequestPermissionLocationHandler.swift; sourceTree = "<group>"; };
+		4AE2CCAD1FF3A0F6004108A6 /* WWPermissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWPermissionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,15 +68,23 @@
 		4A38EFF31FEA7BA000F8D480 /* WWRequestPermission */ = {
 			isa = PBXGroup;
 			children = (
-				4A38F0061FEA7BD500F8D480 /* WWPermissionManager.swift */,
-				4A38F0081FEBB3CC00F8D480 /* WWPermissions.swift */,
-				4A1B79A21FF36D2D00BF30C6 /* WWRequestPermissionLocationHandler.swift */,
+				4AE2CCAA1FF3A0F6004108A6 /* WWRequestPermission */,
 				4A38EFF41FEA7BA000F8D480 /* AppDelegate.swift */,
 				4A38EFF61FEA7BA000F8D480 /* ViewController.swift */,
 				4A38EFF81FEA7BA000F8D480 /* Main.storyboard */,
 				4A38EFFB1FEA7BA000F8D480 /* Assets.xcassets */,
 				4A38EFFD1FEA7BA000F8D480 /* LaunchScreen.storyboard */,
 				4A38F0001FEA7BA000F8D480 /* Info.plist */,
+			);
+			path = WWRequestPermission;
+			sourceTree = "<group>";
+		};
+		4AE2CCAA1FF3A0F6004108A6 /* WWRequestPermission */ = {
+			isa = PBXGroup;
+			children = (
+				4AE2CCAB1FF3A0F6004108A6 /* WWPermissions.swift */,
+				4AE2CCAC1FF3A0F6004108A6 /* WWRequestPermissionLocationHandler.swift */,
+				4AE2CCAD1FF3A0F6004108A6 /* WWPermissionManager.swift */,
 			);
 			path = WWRequestPermission;
 			sourceTree = "<group>";
@@ -161,10 +169,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A38F0091FEBB3CC00F8D480 /* WWPermissions.swift in Sources */,
-				4A38F0071FEA7BD500F8D480 /* WWPermissionManager.swift in Sources */,
-				4A1B79A31FF36D2D00BF30C6 /* WWRequestPermissionLocationHandler.swift in Sources */,
+				4AE2CCAE1FF3A0F7004108A6 /* WWPermissions.swift in Sources */,
 				4A38EFF71FEA7BA000F8D480 /* ViewController.swift in Sources */,
+				4AE2CCAF1FF3A0F7004108A6 /* WWRequestPermissionLocationHandler.swift in Sources */,
+				4AE2CCB01FF3A0F7004108A6 /* WWPermissionManager.swift in Sources */,
 				4A38EFF51FEA7BA000F8D480 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
