@@ -4,10 +4,14 @@
 
 ![demo](https://github.com/WangWei1993/PermissionManager/blob/master/permission.gif)
 
+***1. CocoaPods***
 
-兼容iOS8以上
+```c
+pod 'PermissionManager'
+```
 
-***1. 支持的权限类型***
+
+***2. 支持的权限类型***
 ```swift
 /// Permission Types
 public enum WWRequestPermissionType {
@@ -25,8 +29,7 @@ public enum WWRequestPermissionType {
 ```
 
 
-
-***2. 基本方法***
+***3. 基本方法***
 
 ```swift
 /// 权限管理者接口
@@ -59,7 +62,7 @@ public protocol WWPermissionManagerInterface {
 }
 ```
 
-***3. 设计思路、注意事项***
+***4. 设计思路、注意事项***
 > 设计思路：定义一个枚举包含所有“权限类型”，并将每一个“权限类”都实现协议WWPermissionInterface。“权限管理者类”实现的协议WWPermissionManagerInterface，“权限管理者类”会根据传入的“权限类型”进行区分，并请求权限。
 
 > 所有权限请求request方法都是异步回调的，所以可以在用户选择完权限后进行回调。
@@ -70,8 +73,10 @@ public protocol WWPermissionManagerInterface {
 在iOS11之后，Privacy - Location Always Usage Description被降级为Privacy - Location When In Use Usage Description。
 新添加Privacy - Location Always and When In Use Usage Description隐私权限，在使用后台定位的时候进行操作：Targets - Capabilities - Background Modes - location Update 这一项打钩
 
+> 使用swift编写， 兼容iOS8以上
 
-***4. 使用方法，以相册权限为例***
+
+***5. 使用方法，以相册权限为例***
 
 ```swift
 
@@ -100,5 +105,5 @@ WWPermissionsManager.jumpSetting()
 
 ```
 
-***5. 如果喜欢😍 请给star吧***
+***6. 如果喜欢😍 请给star吧***
 
