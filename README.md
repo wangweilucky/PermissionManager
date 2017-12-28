@@ -60,9 +60,9 @@ public protocol WWPermissionManagerInterface {
 ```
 
 ***3. 设计思路、注意事项***
-> 设计思路：将所有权限类型定义成一个枚举，并将每一个权限类都实现协议WWPermissionInterface。权限管理者类实现的协议WWPermissionManagerInterface，权限管理者Manager会根据传入的枚举类型进行区分。
+> 设计思路：定义一个枚举包含所有“权限类型”，并将每一个“权限类”都实现协议WWPermissionInterface。“权限管理者类”实现的协议WWPermissionManagerInterface，“权限管理者类”会根据传入的“权限类型”进行区分，并请求权限。
 
-> 所有权限请求request都是异步回调的，所以可以在用户选择完权限后进行回调。
+> 所有权限请求request方法都是异步回调的，所以可以在用户选择完权限后进行回调。
 
 > 在Info.plist中加入权限对应的key，否非会出现奔溃的现象。
 
