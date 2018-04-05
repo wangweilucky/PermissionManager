@@ -69,43 +69,43 @@ class ViewController: UIViewController {
     }
     
     func cameraPermission() {
-        let cameraPermissionBool = WWPermissionsManager().isAuthorized(.camera)
+        let cameraPermissionBool = PermissionsManager().isAuthorized(.camera)
         cameraBtn.setTitle(cameraPermissionBool ? CameraEnable : CameraUsing, for: .normal)
         cameraBtn.setTitleColor(cameraPermissionBool ? enableColor : noEnableColor, for: .normal)
     }
     
     func photoLibraryPermission() {
-        let photoLibraryPermissionBool = WWPermissionsManager().isAuthorized(.photoLibrary)
+        let photoLibraryPermissionBool = PermissionsManager().isAuthorized(.photoLibrary)
         photoLibraryBtn.setTitle(photoLibraryPermissionBool ? PhotoLibraryEnable : PhotoLibraryUsing, for: .normal)
         photoLibraryBtn.setTitleColor(photoLibraryPermissionBool ? enableColor : noEnableColor, for: .normal)
     }
     
     func noticePermission() {
-        let noticePermissionBool = WWPermissionsManager().isAuthorized(.notification)
+        let noticePermissionBool = PermissionsManager().isAuthorized(.notification)
         noticeBtn.setTitle(noticePermissionBool ? NotificationEnable : NotificationUsing, for: .normal)
         noticeBtn.setTitleColor(noticePermissionBool ? enableColor : noEnableColor, for: .normal)
     }
     
     func microphonePermission() {
-        let microphonePermissionBool = WWPermissionsManager().isAuthorized(.microphone)
+        let microphonePermissionBool = PermissionsManager().isAuthorized(.microphone)
         microphoneBtn.setTitle(microphonePermissionBool ? MicrophoneEnable : MicrophoneUsing, for: .normal)
         microphoneBtn.setTitleColor(microphonePermissionBool ? enableColor : noEnableColor, for: .normal)
     }
     
     func locationWhenInusePermission() {
-        let locationPermissionBool = WWPermissionsManager().isAuthorized(.locationWhenInUse)
+        let locationPermissionBool = PermissionsManager().isAuthorized(.locationWhenInUse)
         locationWhenInuseBtn.setTitle(locationPermissionBool ? LocationWhenInuseEnable : LocationWhenInuseUsing, for: .normal)
         locationWhenInuseBtn.setTitleColor(locationPermissionBool ? enableColor : noEnableColor, for: .normal)
     }
 
     func locationAlwaysPermission() {
-        let locationPermissionBool = WWPermissionsManager().isAuthorized(.locationAlways)
+        let locationPermissionBool = PermissionsManager().isAuthorized(.locationAlways)
         locationAlwaysBtn.setTitle(locationPermissionBool ? LocationAlwaysEnable : LocationAlwaysUsing, for: .normal)
         locationAlwaysBtn.setTitleColor(locationPermissionBool ? enableColor : noEnableColor, for: .normal)
     }
     
     func locationBackgroudPermission() {
-        let locationPermissionBool = WWPermissionsManager().isAuthorized(.locationWithBackground)
+        let locationPermissionBool = PermissionsManager().isAuthorized(.locationWithBackground)
         locationBackgroudBtn.setTitle(locationPermissionBool ? LocationBackgroudEnable : LocationBackgroudUsing, for: .normal)
         locationBackgroudBtn.setTitleColor(locationPermissionBool ? enableColor : noEnableColor, for: .normal)
     }
@@ -134,25 +134,26 @@ extension ViewController {
     /// 相机权限
     @IBAction func cameraPermissionRequest(_ sender: UIButton) {
         
-        WWPermissionsManager().request(.camera) {self.cameraPermission()}
-        if WWPermissionsManager().isNotDetermined(.camera) {}
-        else if WWPermissionsManager().isAuthorized(.camera) {}
-        else if WWPermissionsManager().isRestrictOrDenied(.camera) {WWPermissionsManager.jumpSetting()}
+
+        PermissionsManager().request(.camera) {self.cameraPermission()}
+        if PermissionsManager().isNotDetermined(.camera) {}
+        else if PermissionsManager().isAuthorized(.camera) {}
+        else if PermissionsManager().isRestrictOrDenied(.camera) {PermissionsManager.jumpSetting()}
     }
     
     // 相册权限
     @IBAction func photoLibraryPremissionRequest(_ sender: UIButton) {
         
-        WWPermissionsManager().request(.photoLibrary, with: {self.photoLibraryPermission()})
-        if WWPermissionsManager().isNotDetermined(.photoLibrary) {}
-        else if WWPermissionsManager().isAuthorized(.photoLibrary) {}
-        else if WWPermissionsManager().isRestrictOrDenied(.photoLibrary) {WWPermissionsManager.jumpSetting()}
+        PermissionsManager().request(.photoLibrary, with: {self.photoLibraryPermission()})
+        if PermissionsManager().isNotDetermined(.photoLibrary) {}
+        else if PermissionsManager().isAuthorized(.photoLibrary) {}
+        else if PermissionsManager().isRestrictOrDenied(.photoLibrary) {PermissionsManager.jumpSetting()}
     }
     
     // 通知权限
     @IBAction func noticePremissionRequest(_ sender: UIButton) {
         
-        WWPermissionsManager().request(.notification, with: {
+        PermissionsManager().request(.notification, with: {
             self.noticePermission()
             if WWNotificationPermission().isRestrictOrDenied() {}
             //            self.jumpSetting()
@@ -162,90 +163,90 @@ extension ViewController {
     // 麦克风权限
     @IBAction func microphonePermissionRequest(_ sender: UIButton) {
         
-        WWPermissionsManager().request(.microphone) {self.microphonePermission()}
-        if WWPermissionsManager().isNotDetermined(.microphone) {}
-        else if WWPermissionsManager().isAuthorized(.microphone) {}
-        else if WWPermissionsManager().isRestrictOrDenied(.microphone) {WWPermissionsManager.jumpSetting()}
+        PermissionsManager().request(.microphone) {self.microphonePermission()}
+        if PermissionsManager().isNotDetermined(.microphone) {}
+        else if PermissionsManager().isAuthorized(.microphone) {}
+        else if PermissionsManager().isRestrictOrDenied(.microphone) {PermissionsManager.jumpSetting()}
     }
     
     // 使用时定位
     @IBAction func locationWhenUsePermissionRequest(_ sender: UIButton) {
-        WWPermissionsManager().request(.locationWhenInUse) {
+        PermissionsManager().request(.locationWhenInUse) {
             self.locationWhenInusePermission()
             self.locationAlwaysPermission()
             self.locationBackgroudPermission()
         }
-        if WWPermissionsManager().isNotDetermined(.locationWhenInUse) {}
-        else if WWPermissionsManager().isAuthorized(.locationWhenInUse) {}
-        else if WWPermissionsManager().isRestrictOrDenied(.locationWhenInUse) {WWPermissionsManager.jumpSetting()}
+        if PermissionsManager().isNotDetermined(.locationWhenInUse) {}
+        else if PermissionsManager().isAuthorized(.locationWhenInUse) {}
+        else if PermissionsManager().isRestrictOrDenied(.locationWhenInUse) {PermissionsManager.jumpSetting()}
     }
     
     // 前后台定位（IOS11 以后就降级了）
     @IBAction func locationAlwaysPermissionRequest(_ sender: UIButton) {
-        WWPermissionsManager().request(.locationAlways) {
+        PermissionsManager().request(.locationAlways) {
             self.locationAlwaysPermission()
             self.locationWhenInusePermission()
             self.locationBackgroudPermission()
         }
-        if WWPermissionsManager().isNotDetermined(.locationAlways) {}
-        else if WWPermissionsManager().isAuthorized(.locationAlways) {}
-        else if WWPermissionsManager().isRestrictOrDenied(.locationAlways) {WWPermissionsManager.jumpSetting()}
+        if PermissionsManager().isNotDetermined(.locationAlways) {}
+        else if PermissionsManager().isAuthorized(.locationAlways) {}
+        else if PermissionsManager().isRestrictOrDenied(.locationAlways) {PermissionsManager.jumpSetting()}
     }
     
     // 前后台定位（IOS11开始生效，需要在info.plist设置下：
     // 1. Privacy - Location Always and When In Use Usage Description
     // 2. targets - Capabilities - Background Modes - location Update 打钩
     @IBAction func locationBackgroundPermissionRequest(_ sender: UIButton) {
-        WWPermissionsManager().request(.locationWithBackground) {
+        PermissionsManager().request(.locationWithBackground) {
             self.locationBackgroudPermission()
             self.locationWhenInusePermission()
             self.locationAlwaysPermission()
         }
-        if WWPermissionsManager().isNotDetermined(.locationWithBackground) {}
-        else if WWPermissionsManager().isAuthorized(.locationWithBackground) {}
-        else if WWPermissionsManager().isRestrictOrDenied(.locationWithBackground) {WWPermissionsManager.jumpSetting()}
+        if PermissionsManager().isNotDetermined(.locationWithBackground) {}
+        else if PermissionsManager().isAuthorized(.locationWithBackground) {}
+        else if PermissionsManager().isRestrictOrDenied(.locationWithBackground) {PermissionsManager.jumpSetting()}
     }
     
     // 日历
     @IBAction func CalendarPermissionRequest(_ sender: UIButton) {
         
-        WWPermissionsManager().request(.calendar) {
+        PermissionsManager().request(.calendar) {
             self.calendarPermission()
             
         }
-        if WWPermissionsManager().isNotDetermined(.calendar) {}
-        else if WWPermissionsManager().isAuthorized(.calendar) {}
-        else if WWPermissionsManager().isRestrictOrDenied(.calendar) {WWPermissionsManager.jumpSetting()}
+        if PermissionsManager().isNotDetermined(.calendar) {}
+        else if PermissionsManager().isAuthorized(.calendar) {}
+        else if PermissionsManager().isRestrictOrDenied(.calendar) {PermissionsManager.jumpSetting()}
     }
     
     // 联系人
     @IBAction func ContactsPermissionRequest(_ sender: UIButton) {
         
-        WWPermissionsManager().request(.contacts) {
+        PermissionsManager().request(.contacts) {
             self.contactsPermission()
             
         }
-        if WWPermissionsManager().isNotDetermined(.contacts) {}
-        else if WWPermissionsManager().isAuthorized(.contacts) {}
-        else if WWPermissionsManager().isRestrictOrDenied(.contacts) {WWPermissionsManager.jumpSetting()}
+        if PermissionsManager().isNotDetermined(.contacts) {}
+        else if PermissionsManager().isAuthorized(.contacts) {}
+        else if PermissionsManager().isRestrictOrDenied(.contacts) {PermissionsManager.jumpSetting()}
     }
     
     // 日程提醒
     @IBAction func RemindersPermissionRequest(_ sender: UIButton) {
         
-        WWPermissionsManager().request(.reminders) {
+        PermissionsManager().request(.reminders) {
             self.remindersPermission()
             
         }
-        if WWPermissionsManager().isNotDetermined(.reminders) {}
-        else if WWPermissionsManager().isAuthorized(.reminders) {}
-        else if WWPermissionsManager().isRestrictOrDenied(.reminders) {WWPermissionsManager.jumpSetting()}
+        if PermissionsManager().isNotDetermined(.reminders) {}
+        else if PermissionsManager().isAuthorized(.reminders) {}
+        else if PermissionsManager().isRestrictOrDenied(.reminders) {PermissionsManager.jumpSetting()}
     }
     
     
     // jumpSetting
     @IBAction func jumpSetting() {
-        WWPermissionsManager.jumpSetting()
+        PermissionsManager.jumpSetting()
     }
 }
 

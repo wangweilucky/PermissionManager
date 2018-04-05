@@ -12,9 +12,11 @@
 		4A38EFFA1FEA7BA000F8D480 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A38EFF81FEA7BA000F8D480 /* Main.storyboard */; };
 		4A38EFFC1FEA7BA000F8D480 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A38EFFB1FEA7BA000F8D480 /* Assets.xcassets */; };
 		4A38EFFF1FEA7BA000F8D480 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A38EFFD1FEA7BA000F8D480 /* LaunchScreen.storyboard */; };
-		4AE2CCBC1FF3BD4E004108A6 /* WWPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCB91FF3BD4E004108A6 /* WWPermissions.swift */; };
-		4AE2CCBD1FF3BD4E004108A6 /* WWRequestPermissionLocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCBA1FF3BD4E004108A6 /* WWRequestPermissionLocationHandler.swift */; };
-		4AE2CCBE1FF3BD4E004108A6 /* WWPermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCBB1FF3BD4E004108A6 /* WWPermissionManager.swift */; };
+		4A97A8FF2075B4AA00BFF02C /* PermissionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97A8FE2075B4AA00BFF02C /* PermissionInterface.swift */; };
+		4A97A9012075B4E700BFF02C /* PermissionManagerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97A9002075B4E700BFF02C /* PermissionManagerInterface.swift */; };
+		4AE2CCBC1FF3BD4E004108A6 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCB91FF3BD4E004108A6 /* Permissions.swift */; };
+		4AE2CCBD1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCBA1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift */; };
+		4AE2CCBE1FF3BD4E004108A6 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCBB1FF3BD4E004108A6 /* PermissionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +27,11 @@
 		4A38EFFB1FEA7BA000F8D480 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A38EFFE1FEA7BA000F8D480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A38F0001FEA7BA000F8D480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4AE2CCB91FF3BD4E004108A6 /* WWPermissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWPermissions.swift; sourceTree = "<group>"; };
-		4AE2CCBA1FF3BD4E004108A6 /* WWRequestPermissionLocationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWRequestPermissionLocationHandler.swift; sourceTree = "<group>"; };
-		4AE2CCBB1FF3BD4E004108A6 /* WWPermissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWPermissionManager.swift; sourceTree = "<group>"; };
+		4A97A8FE2075B4AA00BFF02C /* PermissionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionInterface.swift; sourceTree = "<group>"; };
+		4A97A9002075B4E700BFF02C /* PermissionManagerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManagerInterface.swift; sourceTree = "<group>"; };
+		4AE2CCB91FF3BD4E004108A6 /* Permissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		4AE2CCBA1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPermissionLocationHandler.swift; sourceTree = "<group>"; };
+		4AE2CCBB1FF3BD4E004108A6 /* PermissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,9 +86,11 @@
 		4AE2CCB81FF3BD4E004108A6 /* WWPermissionManager */ = {
 			isa = PBXGroup;
 			children = (
-				4AE2CCB91FF3BD4E004108A6 /* WWPermissions.swift */,
-				4AE2CCBA1FF3BD4E004108A6 /* WWRequestPermissionLocationHandler.swift */,
-				4AE2CCBB1FF3BD4E004108A6 /* WWPermissionManager.swift */,
+				4AE2CCB91FF3BD4E004108A6 /* Permissions.swift */,
+				4AE2CCBA1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift */,
+				4AE2CCBB1FF3BD4E004108A6 /* PermissionManager.swift */,
+				4A97A8FE2075B4AA00BFF02C /* PermissionInterface.swift */,
+				4A97A9002075B4E700BFF02C /* PermissionManagerInterface.swift */,
 			);
 			path = WWPermissionManager;
 			sourceTree = SOURCE_ROOT;
@@ -171,9 +177,11 @@
 			files = (
 				4A38EFF71FEA7BA000F8D480 /* ViewController.swift in Sources */,
 				4A38EFF51FEA7BA000F8D480 /* AppDelegate.swift in Sources */,
-				4AE2CCBC1FF3BD4E004108A6 /* WWPermissions.swift in Sources */,
-				4AE2CCBD1FF3BD4E004108A6 /* WWRequestPermissionLocationHandler.swift in Sources */,
-				4AE2CCBE1FF3BD4E004108A6 /* WWPermissionManager.swift in Sources */,
+				4AE2CCBC1FF3BD4E004108A6 /* Permissions.swift in Sources */,
+				4AE2CCBD1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift in Sources */,
+				4A97A9012075B4E700BFF02C /* PermissionManagerInterface.swift in Sources */,
+				4A97A8FF2075B4AA00BFF02C /* PermissionInterface.swift in Sources */,
+				4AE2CCBE1FF3BD4E004108A6 /* PermissionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

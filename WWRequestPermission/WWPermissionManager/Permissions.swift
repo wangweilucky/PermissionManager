@@ -16,7 +16,7 @@ import AVFoundation
 
 
 /// The app's Info.plist must contain an NSCameraUsageDescription key
-class WWCameraPermission: WWPermissionInterface{
+class WWCameraPermission: PermissionInterface{
     
     func isNotDetermined() -> Bool {
         return AVCaptureDevice.authorizationStatus(for: .video) == .notDetermined
@@ -40,7 +40,7 @@ class WWCameraPermission: WWPermissionInterface{
 }
 
 /// The app's Info.plist must contain an NSPhotoLibraryUsageDescription key
-class WWPhotoLibraryPermission: WWPermissionInterface {
+class WWPhotoLibraryPermission: PermissionInterface {
     
     func isNotDetermined() -> Bool {
         return PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.notDetermined
@@ -64,7 +64,7 @@ class WWPhotoLibraryPermission: WWPermissionInterface {
     }
 }
 
-class WWNotificationPermission: WWPermissionInterface {
+class WWNotificationPermission: PermissionInterface {
     
     func isNotDetermined() -> Bool {
         return true // 通知没有未确定的情况，此方法忽略
@@ -111,7 +111,7 @@ class WWNotificationPermission: WWPermissionInterface {
 }
 
 
-class WWMicrophonePermission: WWPermissionInterface {
+class WWMicrophonePermission: PermissionInterface {
     func isNotDetermined() -> Bool {
         return AVAudioSession.sharedInstance().recordPermission() == .undetermined
     }
@@ -136,7 +136,7 @@ class WWMicrophonePermission: WWPermissionInterface {
     }
 }
 
-class WWLocationPermission: NSObject, WWPermissionInterface {
+class WWLocationPermission: NSObject, PermissionInterface {
     
     var type: WWLocationType
     
@@ -229,7 +229,7 @@ class WWLocationPermission: NSObject, WWPermissionInterface {
 }
 
 // The app's Info.plist must contain an NSContactsUsageDescription key
-class WWContactsPermission: WWPermissionInterface {
+class WWContactsPermission: PermissionInterface {
     func isNotDetermined() -> Bool {
         if #available(iOS 9.0, *) {
             let status = CNContactStore.authorizationStatus(for: .contacts)
@@ -281,7 +281,7 @@ class WWContactsPermission: WWPermissionInterface {
 }
 
 // The app's Info.plist must contain an NSRemindersUsageDescription key
-class WWRemindersPermission: WWPermissionInterface {
+class WWRemindersPermission: PermissionInterface {
     
     
     func isNotDetermined() -> Bool {
@@ -311,7 +311,7 @@ class WWRemindersPermission: WWPermissionInterface {
 }
 
 // The app's Info.plist must contain an NSCalendarsUsageDescription key
-class WWCalendarPermission: WWPermissionInterface {
+class WWCalendarPermission: PermissionInterface {
     
     func isNotDetermined() -> Bool {
         let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
