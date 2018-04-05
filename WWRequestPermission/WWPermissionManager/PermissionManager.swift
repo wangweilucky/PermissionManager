@@ -22,7 +22,7 @@ public enum RequestPermissionType {
     case calendar
 }
 
-public class PermissionsManager: PermissionManagerInterface {
+public class PermissionsManager: NSObject, PermissionManagerInterface {
 
     public func isNotDetermined(_ permission: RequestPermissionType) -> Bool {
         return getManagerForPermission(permission).isNotDetermined()
