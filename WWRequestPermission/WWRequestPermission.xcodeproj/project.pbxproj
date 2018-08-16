@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0049D37721240160003DD0CE /* PermissionManagerProtocol+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049D37621240160003DD0CE /* PermissionManagerProtocol+Extension.swift */; };
 		4A38EFF51FEA7BA000F8D480 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A38EFF41FEA7BA000F8D480 /* AppDelegate.swift */; };
 		4A38EFF71FEA7BA000F8D480 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A38EFF61FEA7BA000F8D480 /* ViewController.swift */; };
 		4A38EFFA1FEA7BA000F8D480 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A38EFF81FEA7BA000F8D480 /* Main.storyboard */; };
 		4A38EFFC1FEA7BA000F8D480 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A38EFFB1FEA7BA000F8D480 /* Assets.xcassets */; };
 		4A38EFFF1FEA7BA000F8D480 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A38EFFD1FEA7BA000F8D480 /* LaunchScreen.storyboard */; };
-		4A97A8FF2075B4AA00BFF02C /* PermissionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97A8FE2075B4AA00BFF02C /* PermissionInterface.swift */; };
-		4A97A9012075B4E700BFF02C /* PermissionManagerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97A9002075B4E700BFF02C /* PermissionManagerInterface.swift */; };
+		4A97A8FF2075B4AA00BFF02C /* PermissionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97A8FE2075B4AA00BFF02C /* PermissionProtocol.swift */; };
+		4A97A9012075B4E700BFF02C /* PermissionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97A9002075B4E700BFF02C /* PermissionManagerProtocol.swift */; };
 		4AE2CCBC1FF3BD4E004108A6 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCB91FF3BD4E004108A6 /* Permissions.swift */; };
 		4AE2CCBD1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCBA1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift */; };
 		4AE2CCBE1FF3BD4E004108A6 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CCBB1FF3BD4E004108A6 /* PermissionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0049D37621240160003DD0CE /* PermissionManagerProtocol+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PermissionManagerProtocol+Extension.swift"; sourceTree = "<group>"; };
 		4A38EFF11FEA7BA000F8D480 /* WWRequestPermission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWRequestPermission.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A38EFF41FEA7BA000F8D480 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A38EFF61FEA7BA000F8D480 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,8 +29,8 @@
 		4A38EFFB1FEA7BA000F8D480 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A38EFFE1FEA7BA000F8D480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A38F0001FEA7BA000F8D480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A97A8FE2075B4AA00BFF02C /* PermissionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionInterface.swift; sourceTree = "<group>"; };
-		4A97A9002075B4E700BFF02C /* PermissionManagerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManagerInterface.swift; sourceTree = "<group>"; };
+		4A97A8FE2075B4AA00BFF02C /* PermissionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionProtocol.swift; sourceTree = "<group>"; };
+		4A97A9002075B4E700BFF02C /* PermissionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManagerProtocol.swift; sourceTree = "<group>"; };
 		4AE2CCB91FF3BD4E004108A6 /* Permissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
 		4AE2CCBA1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPermissionLocationHandler.swift; sourceTree = "<group>"; };
 		4AE2CCBB1FF3BD4E004108A6 /* PermissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
@@ -86,11 +88,12 @@
 		4AE2CCB81FF3BD4E004108A6 /* WWPermissionManager */ = {
 			isa = PBXGroup;
 			children = (
+				4A97A8FE2075B4AA00BFF02C /* PermissionProtocol.swift */,
 				4AE2CCB91FF3BD4E004108A6 /* Permissions.swift */,
 				4AE2CCBA1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift */,
 				4AE2CCBB1FF3BD4E004108A6 /* PermissionManager.swift */,
-				4A97A8FE2075B4AA00BFF02C /* PermissionInterface.swift */,
-				4A97A9002075B4E700BFF02C /* PermissionManagerInterface.swift */,
+				4A97A9002075B4E700BFF02C /* PermissionManagerProtocol.swift */,
+				0049D37621240160003DD0CE /* PermissionManagerProtocol+Extension.swift */,
 			);
 			path = WWPermissionManager;
 			sourceTree = SOURCE_ROOT;
@@ -122,7 +125,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "王伟";
 				TargetAttributes = {
 					4A38EFF01FEA7BA000F8D480 = {
@@ -175,12 +178,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0049D37721240160003DD0CE /* PermissionManagerProtocol+Extension.swift in Sources */,
 				4A38EFF71FEA7BA000F8D480 /* ViewController.swift in Sources */,
 				4A38EFF51FEA7BA000F8D480 /* AppDelegate.swift in Sources */,
 				4AE2CCBC1FF3BD4E004108A6 /* Permissions.swift in Sources */,
 				4AE2CCBD1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift in Sources */,
-				4A97A9012075B4E700BFF02C /* PermissionManagerInterface.swift in Sources */,
-				4A97A8FF2075B4AA00BFF02C /* PermissionInterface.swift in Sources */,
+				4A97A9012075B4E700BFF02C /* PermissionManagerProtocol.swift in Sources */,
+				4A97A8FF2075B4AA00BFF02C /* PermissionProtocol.swift in Sources */,
 				4AE2CCBE1FF3BD4E004108A6 /* PermissionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +225,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -228,6 +233,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -278,6 +284,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -285,6 +292,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

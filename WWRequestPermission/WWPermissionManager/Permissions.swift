@@ -16,133 +16,266 @@ import AVFoundation
 
 
 /// The app's Info.plist must contain an NSCameraUsageDescription key
-class WWCameraPermission: PermissionInterface{
+class WWCameraPermission: PermissionProtocol {
     
+    var status: AVAuthorizationStatus {
+        return AVCaptureDevice.authorizationStatus(for: .video)
+    }
+    
+    // .authorized, .denied, .restricted, .notDetermined
+    func request(complectionHandler: @escaping PermissionClosure) {
+        AVCaptureDevice.requestAccess(for: .video) { (finished) in
+            switch self.status {
+            case .authorized:
+                complectionHandler(true)
+            case .denied, .restricted, .notDetermined:
+                complectionHandler(false)
+            }
+        }
+    }
+
     func isNotDetermined() -> Bool {
-        return AVCaptureDevice.authorizationStatus(for: .video) == .notDetermined
+        return status == .notDetermined
     }
     
     func isAuthorized() -> Bool {
-        return AVCaptureDevice.authorizationStatus(for: .video) == .authorized
+        return status == .authorized
     }
     
     func isRestrictOrDenied() -> Bool {
-        return AVCaptureDevice.authorizationStatus(for: .video) == .restricted || AVCaptureDevice.authorizationStatus(for: .video) == .denied
-    }
-    
-    func request(withComplectionHandler complectionHandler: @escaping () -> ()) {
-        AVCaptureDevice.requestAccess(for: .video) { (finished) in
-            DispatchQueue.main.async {
-                complectionHandler()
-            }
-        }
+        return status == .restricted || AVCaptureDevice.authorizationStatus(for: .video) == .denied
     }
 }
 
 /// The app's Info.plist must contain an NSPhotoLibraryUsageDescription key
-class WWPhotoLibraryPermission: PermissionInterface {
+class WWPhotoLibraryPermission: PermissionProtocol {
     
-    func isNotDetermined() -> Bool {
-        return PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.notDetermined
+    var status: PHAuthorizationStatus {
+        return PHPhotoLibrary.authorizationStatus()
     }
     
-    func isAuthorized() -> Bool {
-        return PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized
-    }
-    
-    func isRestrictOrDenied() -> Bool {
-        return PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.restricted || PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.denied
-    }
-    
-    func request(withComplectionHandler complectionHandler: @escaping () -> ()) {
-        PHPhotoLibrary.requestAuthorization({
-            finished in
-            DispatchQueue.main.async {
-                complectionHandler()
+    // .authorized, .denied, .restricted, .notDetermined
+    func request(complectionHandler: @escaping PermissionClosure) {
+        PHPhotoLibrary.requestAuthorization({ finished in
+            switch self.status {
+            case .authorized:
+                complectionHandler(true)
+            case .denied, .restricted, .notDetermined:
+                complectionHandler(false)
             }
         })
     }
-}
-
-class WWNotificationPermission: PermissionInterface {
+    
     
     func isNotDetermined() -> Bool {
-        return true // 通知没有未确定的情况，此方法忽略
+        return status == PHAuthorizationStatus.notDetermined
     }
     
     func isAuthorized() -> Bool {
-        return UIApplication.shared.currentUserNotificationSettings!.types != []
+        return status == PHAuthorizationStatus.authorized
     }
     
     func isRestrictOrDenied() -> Bool {
-        return !WWNotificationPermission().isAuthorized()
+        return status == PHAuthorizationStatus.restricted || PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.denied
     }
+}
+
+class WWNotificationPermission: PermissionProtocol {
     
-    func request(withComplectionHandler complectionHandler: @escaping () -> ()) {
+    // notDetermined denied authorized
+    func request(complectionHandler: @escaping PermissionClosure) {
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
-                DispatchQueue.main.async {
-                    complectionHandler()
+                if (granted) {
+                    complectionHandler(true)
+                } else {
+                    complectionHandler(false)
                 }
             }
-        } // iOS 9 support
-        else if #available(iOS 9, *) {
+        } else if #available(iOS 8, *) {
             UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            DispatchQueue.main.async {
-                complectionHandler()
-            }
+            UIApplication.shared.registerForRemoteNotifications()
+            complectionHandler(true)
+        } else {
+            UIApplication.shared.registerForRemoteNotifications(matching: [.alert, .badge, .sound])
+            UIApplication.shared.registerForRemoteNotifications()
+            complectionHandler(true)
         }
-            // iOS 8 support
-        else if #available(iOS 8, *) {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            DispatchQueue.main.async {
-                complectionHandler()
-            }
+    }
+    
+    @available(iOS 10.0, *)
+    var status: UNAuthorizationStatus {
+        var status : UNAuthorizationStatus = .denied
+        let group = DispatchGroup()
+        group.enter() // 阻塞线程,直到派发的任务完成
+        UNUserNotificationCenter.current().getNotificationSettings { (setting) in
+            status = setting.authorizationStatus
+            group.leave()
         }
-            // iOS 7 support
-        else {
-            DispatchQueue.main.async {
-                complectionHandler()
-            }
+        group.wait()
+        return status
+    }
+    
+    func isNotDetermined() -> Bool {
+        if #available(iOS 10, *) {
+            return status == .notDetermined
+        } else {
+            return false
         }
-        UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+    func isAuthorized() -> Bool {
+        if #available(iOS 10, *) {
+            return status == .authorized
+        } else {
+            return false
+        }
+    }
+    
+    func isRestrictOrDenied() -> Bool {
+        if #available(iOS 10, *) {
+            return status == .denied
+        } else {
+            return false
+        }
     }
 }
 
 
-class WWMicrophonePermission: PermissionInterface {
+class WWMicrophonePermission: PermissionProtocol {
+    
+    var status: AVAudioSessionRecordPermission {
+        return AVAudioSession.sharedInstance().recordPermission()
+    }
+    
+    // denied undetermined granted
+    func request(complectionHandler: @escaping PermissionClosure) {
+        AVAudioSession.sharedInstance().requestRecordPermission { granted in
+            complectionHandler(granted)
+        }
+    }
+    
     func isNotDetermined() -> Bool {
-        return AVAudioSession.sharedInstance().recordPermission() == .undetermined
+        return status == .undetermined
     }
     
     func isAuthorized() -> Bool {
-        let status = AVAudioSession.sharedInstance().recordPermission()
         return status == .granted
     }
     
     func isRestrictOrDenied() -> Bool {
-        return AVAudioSession.sharedInstance().recordPermission() == .denied
+        return status == .denied
+    }
+}
+
+// The app's Info.plist must contain an NSContactsUsageDescription key
+class WWContactsPermission: PermissionProtocol {
+    
+    // notDetermined restricted denied authorized
+    func request(complectionHandler: @escaping PermissionClosure) {
+        if #available(iOS 9.0, *) {
+            let store = CNContactStore()
+            store.requestAccess(for: .contacts, completionHandler: { (granted, error) in
+                complectionHandler(granted)
+            })
+        } else {
+            let addressBookRef: ABAddressBook = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue()
+            ABAddressBookRequestAccessWithCompletion(addressBookRef) {
+                (granted: Bool, error: CFError?) in
+                complectionHandler(granted)
+            }
+        }
     }
     
-    func request(withComplectionHandler complectionHandler: @escaping () -> ()) {
-        
-        AVAudioSession.sharedInstance().requestRecordPermission {
-            granted in
-            DispatchQueue.main.async {
-                complectionHandler()
-            }
+    func isNotDetermined() -> Bool {
+        if #available(iOS 9.0, *) {
+            return CNContactStore.authorizationStatus(for: .contacts) == .notDetermined
+        } else {
+            return ABAddressBookGetAuthorizationStatus() == .notDetermined
+        }
+    }
+    
+    func isAuthorized() -> Bool {
+        if #available(iOS 9.0, *) {
+            return CNContactStore.authorizationStatus(for: .contacts) == .authorized
+        } else {
+            return ABAddressBookGetAuthorizationStatus() == .authorized
+        }
+    }
+    
+    func isRestrictOrDenied() -> Bool {
+        if #available(iOS 9.0, *) {
+            let status = CNContactStore.authorizationStatus(for: .contacts)
+            return status == .restricted || status == .denied
+        } else {
+            let status = ABAddressBookGetAuthorizationStatus()
+            return status == .restricted || status == .denied
         }
     }
 }
 
-class WWLocationPermission: NSObject, PermissionInterface {
+// The app's Info.plist must contain an NSRemindersUsageDescription key
+class WWRemindersPermission: PermissionProtocol {
     
-    var type: WWLocationType
+    var status: EKAuthorizationStatus {
+        let status = EKEventStore.authorizationStatus(for: EKEntityType.reminder)
+        return status
+    }
     
-    lazy var locationManager: CLLocationManager =  {
-        return CLLocationManager()
-    }()
+    func request(complectionHandler: @escaping PermissionClosure) {
+        let eventStore = EKEventStore()
+        eventStore.requestAccess(to: EKEntityType.reminder, completion: {
+            (accessGranted: Bool, error: Error?) in
+            complectionHandler(accessGranted)
+        })
+    }
+    
+    
+    func isNotDetermined() -> Bool {
+        return status == EKAuthorizationStatus.notDetermined
+    }
+    
+    func isAuthorized() -> Bool {
+        return status == EKAuthorizationStatus.authorized
+    }
+    
+    func isRestrictOrDenied() -> Bool {
+        return status == EKAuthorizationStatus.restricted || status == EKAuthorizationStatus.denied
+    }
+}
+
+// The app's Info.plist must contain an NSCalendarsUsageDescription key
+class WWCalendarPermission: PermissionProtocol {
+    
+    var status: EKAuthorizationStatus {
+        return EKEventStore.authorizationStatus(for: EKEntityType.event)
+    }
+    
+    func request(complectionHandler: @escaping PermissionClosure) {
+        let eventStore = EKEventStore()
+        eventStore.requestAccess(to: EKEntityType.event, completion: {
+            (accessGranted: Bool, error: Error?) in
+            complectionHandler(accessGranted)
+        })
+    }
+    
+    func isNotDetermined() -> Bool {
+        return status == EKAuthorizationStatus.notDetermined
+    }
+    
+    func isAuthorized() -> Bool {
+        return status == EKAuthorizationStatus.authorized
+    }
+    
+    func isRestrictOrDenied() -> Bool {
+        return status == EKAuthorizationStatus.restricted || status == EKAuthorizationStatus.denied
+    }
+}
+
+
+
+class WWLocationPermission: PermissionProtocol {
     
     enum WWLocationType {
         case Always
@@ -150,233 +283,70 @@ class WWLocationPermission: NSObject, PermissionInterface {
         case AlwaysWithBackground
     }
     
+    var type: WWLocationType
+    
+    lazy var locationManager: CLLocationManager =  {
+        return CLLocationManager()
+    }()
+    
     init(type: WWLocationType) {
         
         self.type = type
     }
     
-    
-    func isNotDetermined() -> Bool {
+    func request(complectionHandler: @escaping PermissionClosure) {
         switch type {
         case .Always:
-            return WWRequestPermissionAlwaysAuthorizationLocationHandler().isNotDetermined()
-        case .WhenInUse:
-            return WWRequestPermissionWhenInUseAuthorizationLocationHandler().isNotDetermined()
-        case .AlwaysWithBackground:
-            return WWRequestPermissionLocationWithBackgroundHandler().isNotDetermined()
-        }
-    }
-    
-    func isAuthorized() -> Bool {
-        switch type {
-        case .Always:
-            return WWRequestPermissionAlwaysAuthorizationLocationHandler().isAuthorized()
-        case .WhenInUse:
-            return WWRequestPermissionWhenInUseAuthorizationLocationHandler().isAuthorized()
-        case .AlwaysWithBackground:
-            return WWRequestPermissionLocationWithBackgroundHandler().isAuthorized()
-        }
-    }
-    
-    func isRestrictOrDenied() -> Bool {
-        switch type {
-        case .Always:
-            return WWRequestPermissionAlwaysAuthorizationLocationHandler().isRestrictOrDenied()
-        case .WhenInUse:
-            return WWRequestPermissionWhenInUseAuthorizationLocationHandler().isRestrictOrDenied()
-        case .AlwaysWithBackground:
-            return WWRequestPermissionLocationWithBackgroundHandler().isRestrictOrDenied()
-        }
-    }
-    
-    func request(withComplectionHandler complectionHandler: @escaping () -> ()) {
-        switch type {
-        case .Always:
-            if WWRequestPermissionAlwaysAuthorizationLocationHandler.share == nil {
-                WWRequestPermissionAlwaysAuthorizationLocationHandler.share = WWRequestPermissionAlwaysAuthorizationLocationHandler()
-            }
-            WWRequestPermissionAlwaysAuthorizationLocationHandler.share!.request({ (authorized) in
-                DispatchQueue.main.async {
-                    complectionHandler()
-                    WWRequestPermissionAlwaysAuthorizationLocationHandler.share = nil
-                }
+            PermissionAlwaysLocationHandler.share.request({ (authorized) in
+                complectionHandler(authorized)
             })
             
         case .WhenInUse:
-            if WWRequestPermissionWhenInUseAuthorizationLocationHandler.share == nil {
-                WWRequestPermissionWhenInUseAuthorizationLocationHandler.share = WWRequestPermissionWhenInUseAuthorizationLocationHandler()
-            }
-            WWRequestPermissionWhenInUseAuthorizationLocationHandler.share!.request({ (authorized) in
-                DispatchQueue.main.async {
-                    complectionHandler()
-                    WWRequestPermissionWhenInUseAuthorizationLocationHandler.share = nil
-                }
+            PermissionWhenInUseLocationHandler.share.request({ (authorized) in
+                complectionHandler(authorized)
             })
             
         case .AlwaysWithBackground:
-            if WWRequestPermissionLocationWithBackgroundHandler.share == nil {
-                WWRequestPermissionLocationWithBackgroundHandler.share = WWRequestPermissionLocationWithBackgroundHandler()
-            }
-            WWRequestPermissionLocationWithBackgroundHandler.share!.request({ (authorized) in
-                DispatchQueue.main.async {
-                    complectionHandler()
-                    WWRequestPermissionLocationWithBackgroundHandler.share = nil
-                }
+            PermissionLocationWithBackgroundHandler.share.request({ (authorized) in
+                complectionHandler(authorized)
             })
         }
     }
     
-}
-
-// The app's Info.plist must contain an NSContactsUsageDescription key
-class WWContactsPermission: PermissionInterface {
+    
     func isNotDetermined() -> Bool {
-        if #available(iOS 9.0, *) {
-            let status = CNContactStore.authorizationStatus(for: .contacts)
-            return status == .notDetermined
-        } else {
-            let status = ABAddressBookGetAuthorizationStatus()
-            return status == .notDetermined
+        switch type {
+        case .Always:
+            return PermissionAlwaysLocationHandler().isNotDetermined()
+        case .WhenInUse:
+            return PermissionWhenInUseLocationHandler().isNotDetermined()
+        case .AlwaysWithBackground:
+            return PermissionLocationWithBackgroundHandler().isNotDetermined()
         }
     }
     
     func isAuthorized() -> Bool {
-        if #available(iOS 9.0, *) {
-            let status = CNContactStore.authorizationStatus(for: .contacts)
-            return status == .authorized
-        } else {
-            let status = ABAddressBookGetAuthorizationStatus()
-            return status == .authorized
+        switch type {
+        case .Always:
+            return PermissionAlwaysLocationHandler().isAuthorized()
+        case .WhenInUse:
+            return PermissionWhenInUseLocationHandler().isAuthorized()
+        case .AlwaysWithBackground:
+            return PermissionLocationWithBackgroundHandler().isAuthorized()
         }
     }
     
     func isRestrictOrDenied() -> Bool {
-        if #available(iOS 9.0, *) {
-            let status = CNContactStore.authorizationStatus(for: .contacts)
-            return status == .restricted || status == .denied
-        } else {
-            let status = ABAddressBookGetAuthorizationStatus()
-            return status == .restricted || status == .denied
-        }
-    }
-    
-    func request(withComplectionHandler complectionHandler: @escaping () -> ()) {
-        if #available(iOS 9.0, *) {
-            let store = CNContactStore()
-            store.requestAccess(for: .contacts, completionHandler: { (granted, error) in
-                DispatchQueue.main.async {
-                    complectionHandler()
-                }
-            })
-        } else {
-            let addressBookRef: ABAddressBook = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue()
-            ABAddressBookRequestAccessWithCompletion(addressBookRef) {
-                (granted: Bool, error: CFError?) in
-                DispatchQueue.main.async() {
-                    complectionHandler()
-                }
-            }
+        switch type {
+        case .Always:
+            return PermissionAlwaysLocationHandler().isRestrictOrDenied()
+        case .WhenInUse:
+            return PermissionWhenInUseLocationHandler().isRestrictOrDenied()
+        case .AlwaysWithBackground:
+            return PermissionLocationWithBackgroundHandler().isRestrictOrDenied()
         }
     }
 }
 
-// The app's Info.plist must contain an NSRemindersUsageDescription key
-class WWRemindersPermission: PermissionInterface {
-    
-    
-    func isNotDetermined() -> Bool {
-        let status = EKEventStore.authorizationStatus(for: EKEntityType.reminder)
-        return status == EKAuthorizationStatus.notDetermined
-    }
-    
-    func isAuthorized() -> Bool {
-        let status = EKEventStore.authorizationStatus(for: EKEntityType.reminder)
-        return status == EKAuthorizationStatus.authorized
-    }
-    
-    func isRestrictOrDenied() -> Bool {
-        let status = EKEventStore.authorizationStatus(for: EKEntityType.reminder)
-        return status == EKAuthorizationStatus.restricted || status == EKAuthorizationStatus.denied
-    }
-    
-    func request(withComplectionHandler complectionHandler: @escaping () -> ()) {
-        let eventStore = EKEventStore()
-        eventStore.requestAccess(to: EKEntityType.reminder, completion: {
-            (accessGranted: Bool, error: Error?) in
-            DispatchQueue.main.async {
-                complectionHandler()
-            }
-        })
-    }
-}
-
-// The app's Info.plist must contain an NSCalendarsUsageDescription key
-class WWCalendarPermission: PermissionInterface {
-    
-    func isNotDetermined() -> Bool {
-        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
-        return status == EKAuthorizationStatus.notDetermined
-    }
-    
-    func isAuthorized() -> Bool {
-        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
-        return status == EKAuthorizationStatus.authorized
-    }
-    
-    func isRestrictOrDenied() -> Bool {
-        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
-        return status == EKAuthorizationStatus.restricted || status == EKAuthorizationStatus.denied
-    }
-    
-    func request(withComplectionHandler complectionHandler: @escaping () -> ()) {
-        let eventStore = EKEventStore()
-        eventStore.requestAccess(to: EKEntityType.event, completion: {
-            (accessGranted: Bool, error: Error?) in
-            DispatchQueue.main.async {
-                complectionHandler()
-            }
-        })
-    }
-}
 
 
-/*
- <!-- 相册 -->
- <key>NSPhotoLibraryUsageDescription</key>
- <string>App需要您的同意,才能访问相册</string>
- <!-- 相机 -->
- <key>NSCameraUsageDescription</key>
- <string>App需要您的同意,才能访问相机</string>
- <!-- 麦克风 -->
- <key>NSMicrophoneUsageDescription</key>
- <string>App需要您的同意,才能访问麦克风</string>
- <!-- 位置 -->
- <key>NSLocationUsageDescription</key>
- <string>App需要您的同意,才能访问位置</string>
- <!-- 在使用期间访问位置 -->
- <key>NSLocationWhenInUseUsageDescription</key>
- <string>App需要您的同意,才能在使用期间访问位置</string>
- <!-- 始终访问位置 -->
- <key>NSLocationAlwaysUsageDescription</key>
- <string>App需要您的同意,才能始终访问位置</string>
- <!-- 日历 -->
- <key>NSCalendarsUsageDescription</key>
- <string>App需要您的同意,才能访问日历</string>
- <!-- 提醒事项 -->
- <key>NSRemindersUsageDescription</key>
- <string>App需要您的同意,才能访问提醒事项</string>
- <!-- 运动与健身 -->
- <key>NSMotionUsageDescription</key> <string>App需要您的同意,才能访问运动与健身</string>
- <!-- 健康更新 -->
- <key>NSHealthUpdateUsageDescription</key>
- <string>App需要您的同意,才能访问健康更新 </string>
- <!-- 健康分享 -->
- <key>NSHealthShareUsageDescription</key>
- <string>App需要您的同意,才能访问健康分享</string>
- <!-- 蓝牙 -->
- <key>NSBluetoothPeripheralUsageDescription</key>
- <string>App需要您的同意,才能访问蓝牙</string>
- <!-- 媒体资料库 -->
- <key>NSAppleMusicUsageDescription</key>
- <string>App需要您的同意,才能访问媒体资料库</string>
- */

@@ -8,26 +8,61 @@
 
 import UIKit
 
-private let CameraEnable       = "相机访问权限已启用"
-private let CameraUsing        = "启用相机权限"
-private let PhotoLibraryEnable = "相册访问权限已启用"
-private let PhotoLibraryUsing  = "启用相册权限"
-private let NotificationEnable = "通知访问权限已启用"
-private let NotificationUsing  = "启用通知权限"
-private let MicrophoneEnable   = "语音访问权限已启用"
-private let MicrophoneUsing    = "启用语音权限"
-private let LocationWhenInuseUsing    = "启用WhenInuse权限"
-private let LocationWhenInuseEnable   = "WhenInuse访问权限已启用"
-private let LocationAlwaysUsing       = "启用Always权限"
-private let LocationAlwaysEnable      = "Always访问权限已启用"
-private let LocationBackgroudUsing    = "启用Backgroud权限"
-private let LocationBackgroudEnable   = "Backgroud访问权限已启用"
-private let CalendarEnable   = "日历访问权限已启用"
-private let CalendarUsing    = "启用日历权限"
-private let ContactsEnable   = "联系人访问权限已启用"
-private let ContactsUsing    = "启用联系人权限"
-private let RemindersEnable  = "注意日程访问权限已启用"
-private let RemindersUsing   = "启用日程权限"
+private let EnableDesc = "启用"
+private let HasEnable = "已启用"
+
+private let Camera       = "相机权限"
+private let PhotoLibrary = "相册权限"
+private let Notification = "通知权限"
+private let MicrophoneEnable    = "语音权限"
+private let LocationWhenInuse   = "WhenInuse权限"
+private let LocationAlways      = "Always权限"
+private let LocationBackgroud   = "Backgroud权限"
+private let Contacts   = "联系人权限"
+private let Reminders  = "日程权限"
+private let Calendar   = "日历权限"
+
+
+/*
+ <!-- 相册 -->
+ <key>NSPhotoLibraryUsageDescription</key>
+ <string>App需要您的同意,才能相册</string>
+ <!-- 相机 -->
+ <key>NSCameraUsageDescription</key>
+ <string>App需要您的同意,才能相机</string>
+ <!-- 麦克风 -->
+ <key>NSMicrophoneUsageDescription</key>
+ <string>App需要您的同意,才能麦克风</string>
+ <!-- 位置 -->
+ <key>NSLocationUsageDescription</key>
+ <string>App需要您的同意,才能位置</string>
+ <!-- 在使用期间位置 -->
+ <key>NSLocationWhenInUseUsageDescription</key>
+ <string>App需要您的同意,才能在使用期间位置</string>
+ <!-- 始终位置 -->
+ <key>NSLocationAlwaysUsageDescription</key>
+ <string>App需要您的同意,才能始终位置</string>
+ <!-- 日历 -->
+ <key>NSCalendarsUsageDescription</key>
+ <string>App需要您的同意,才能日历</string>
+ <!-- 提醒事项 -->
+ <key>NSRemindersUsageDescription</key>
+ <string>App需要您的同意,才能提醒事项</string>
+ <!-- 运动与健身 -->
+ <key>NSMotionUsageDescription</key> <string>App需要您的同意,才能运动与健身</string>
+ <!-- 健康更新 -->
+ <key>NSHealthUpdateUsageDescription</key>
+ <string>App需要您的同意,才能健康更新 </string>
+ <!-- 健康分享 -->
+ <key>NSHealthShareUsageDescription</key>
+ <string>App需要您的同意,才能健康分享</string>
+ <!-- 蓝牙 -->
+ <key>NSBluetoothPeripheralUsageDescription</key>
+ <string>App需要您的同意,才能蓝牙</string>
+ <!-- 媒体资料库 -->
+ <key>NSAppleMusicUsageDescription</key>
+ <string>App需要您的同意,才能媒体资料库</string>
+ */
 
 
 private let noEnableColor = UIColor.init(red: 85.0/255.0,
@@ -69,180 +104,215 @@ class ViewController: UIViewController {
     }
     
     func cameraPermission() {
-        let cameraPermissionBool = PermissionsManager().isAuthorized(.camera)
-        cameraBtn.setTitle(cameraPermissionBool ? CameraEnable : CameraUsing, for: .normal)
-        cameraBtn.setTitleColor(cameraPermissionBool ? enableColor : noEnableColor, for: .normal)
+        showButtonUI(sender: cameraBtn,
+                     bool: PermissionsManager.isAuthorized(.camera))
     }
     
     func photoLibraryPermission() {
-        let photoLibraryPermissionBool = PermissionsManager().isAuthorized(.photoLibrary)
-        photoLibraryBtn.setTitle(photoLibraryPermissionBool ? PhotoLibraryEnable : PhotoLibraryUsing, for: .normal)
-        photoLibraryBtn.setTitleColor(photoLibraryPermissionBool ? enableColor : noEnableColor, for: .normal)
+        showButtonUI(sender: photoLibraryBtn,
+                     bool: PermissionsManager.isAuthorized(.photoLibrary))
     }
     
     func noticePermission() {
-        let noticePermissionBool = PermissionsManager().isAuthorized(.notification)
-        noticeBtn.setTitle(noticePermissionBool ? NotificationEnable : NotificationUsing, for: .normal)
-        noticeBtn.setTitleColor(noticePermissionBool ? enableColor : noEnableColor, for: .normal)
+        showButtonUI(sender: noticeBtn,
+                     bool: PermissionsManager.isAuthorized(.notification))
     }
     
     func microphonePermission() {
-        let microphonePermissionBool = PermissionsManager().isAuthorized(.microphone)
-        microphoneBtn.setTitle(microphonePermissionBool ? MicrophoneEnable : MicrophoneUsing, for: .normal)
-        microphoneBtn.setTitleColor(microphonePermissionBool ? enableColor : noEnableColor, for: .normal)
+        
+        showButtonUI(sender: microphoneBtn,
+                     bool: PermissionsManager.isAuthorized(.microphone))
     }
     
     func locationWhenInusePermission() {
-        let locationPermissionBool = PermissionsManager().isAuthorized(.locationWhenInUse)
-        locationWhenInuseBtn.setTitle(locationPermissionBool ? LocationWhenInuseEnable : LocationWhenInuseUsing, for: .normal)
-        locationWhenInuseBtn.setTitleColor(locationPermissionBool ? enableColor : noEnableColor, for: .normal)
+        showButtonUI(sender: locationWhenInuseBtn,
+                     bool: PermissionsManager.isAuthorized(.locationWhenInUse))
     }
 
     func locationAlwaysPermission() {
-        let locationPermissionBool = PermissionsManager().isAuthorized(.locationAlways)
-        locationAlwaysBtn.setTitle(locationPermissionBool ? LocationAlwaysEnable : LocationAlwaysUsing, for: .normal)
-        locationAlwaysBtn.setTitleColor(locationPermissionBool ? enableColor : noEnableColor, for: .normal)
+        showButtonUI(sender: locationAlwaysBtn,
+                     bool: PermissionsManager.isAuthorized(.locationAlways))
     }
     
     func locationBackgroudPermission() {
-        let locationPermissionBool = PermissionsManager().isAuthorized(.locationWithBackground)
-        locationBackgroudBtn.setTitle(locationPermissionBool ? LocationBackgroudEnable : LocationBackgroudUsing, for: .normal)
-        locationBackgroudBtn.setTitleColor(locationPermissionBool ? enableColor : noEnableColor, for: .normal)
+        showButtonUI(sender: locationBackgroudBtn,
+                     bool: PermissionsManager.isAuthorized(.locationWithBackground))
     }
     
     func calendarPermission() {
-        let calendarPermissionBool = WWCalendarPermission().isAuthorized()
-        calendarBtn.setTitle(calendarPermissionBool ? CalendarEnable : CalendarUsing, for: .normal)
-        calendarBtn.setTitleColor(calendarPermissionBool ? enableColor : noEnableColor, for: .normal)
+        showButtonUI(sender: calendarBtn,
+                     bool: PermissionsManager.isAuthorized(.calendar))
     }
     
     func contactsPermission() {
-        let contactsPermissionBool = WWContactsPermission().isAuthorized()
-        contactsBtn.setTitle(contactsPermissionBool ? ContactsEnable : ContactsUsing, for: .normal)
-        contactsBtn.setTitleColor(contactsPermissionBool ? enableColor : noEnableColor, for: .normal)
+        showButtonUI(sender: contactsBtn,
+                     bool: PermissionsManager.isAuthorized(.contacts))
     }
     
     func remindersPermission() {
-        let remindersPermissionBool = WWRemindersPermission().isAuthorized()
-        remindersBtn.setTitle(remindersPermissionBool ? RemindersEnable : RemindersUsing, for: .normal)
-        remindersBtn.setTitleColor(remindersPermissionBool ? enableColor : noEnableColor, for: .normal)
+        showButtonUI(sender: remindersBtn,
+                     bool: PermissionsManager.isAuthorized(.reminders))
     }
 }
 
 extension ViewController {
     
+    func showButtonUI(sender: UIButton, bool: Bool) {
+        DispatchQueue.main.async {
+            var desc = ""
+            switch sender.tag {
+            case 1:
+                desc = Camera
+            case 2:
+                desc = PhotoLibrary
+            case 3:
+                desc = Notification
+            case 4:
+                desc = MicrophoneEnable
+            case 5:
+                desc = LocationWhenInuse
+            case 6:
+                desc = LocationAlways
+            case 7:
+                desc = LocationBackgroud
+            case 8:
+                desc = Contacts
+            case 9:
+                desc = Reminders
+            case 10:
+                desc = Calendar
+            default:
+                desc = ""
+            }
+            
+            desc = bool ? (desc + HasEnable) : (EnableDesc + desc)
+            sender.setTitleColor(bool ? enableColor : noEnableColor, for: .normal)
+            sender.setTitle(desc, for: .normal)
+        }
+    }
+    
     /// 相机权限
     @IBAction func cameraPermissionRequest(_ sender: UIButton) {
         
-
-        PermissionsManager().request(.camera) {self.cameraPermission()}
-        if PermissionsManager().isNotDetermined(.camera) {}
-        else if PermissionsManager().isAuthorized(.camera) {}
-        else if PermissionsManager().isRestrictOrDenied(.camera) {PermissionsManager.jumpSetting()}
+        if PermissionsManager.isRestrictOrDenied(.camera) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.camera) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
     }
     
     // 相册权限
     @IBAction func photoLibraryPremissionRequest(_ sender: UIButton) {
         
-        PermissionsManager().request(.photoLibrary, with: {self.photoLibraryPermission()})
-        if PermissionsManager().isNotDetermined(.photoLibrary) {}
-        else if PermissionsManager().isAuthorized(.photoLibrary) {}
-        else if PermissionsManager().isRestrictOrDenied(.photoLibrary) {PermissionsManager.jumpSetting()}
-    }
-    
-    // 通知权限
-    @IBAction func noticePremissionRequest(_ sender: UIButton) {
-        
-        PermissionsManager().request(.notification, with: {
-            self.noticePermission()
-            if WWNotificationPermission().isRestrictOrDenied() {}
-            //            self.jumpSetting()
-        })
+        if PermissionsManager.isRestrictOrDenied(.photoLibrary) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.photoLibrary) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
     }
     
     // 麦克风权限
     @IBAction func microphonePermissionRequest(_ sender: UIButton) {
         
-        PermissionsManager().request(.microphone) {self.microphonePermission()}
-        if PermissionsManager().isNotDetermined(.microphone) {}
-        else if PermissionsManager().isAuthorized(.microphone) {}
-        else if PermissionsManager().isRestrictOrDenied(.microphone) {PermissionsManager.jumpSetting()}
+        if PermissionsManager.isRestrictOrDenied(.microphone) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.microphone) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
+    }
+    
+    // 日历
+    @IBAction func CalendarPermissionRequest(_ sender: UIButton) {
+        
+        if PermissionsManager.isRestrictOrDenied(.calendar) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.calendar) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
+    }
+    
+    // 联系人
+    @IBAction func ContactsPermissionRequest(_ sender: UIButton) {
+        
+        if PermissionsManager.isRestrictOrDenied(.contacts) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.contacts) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
+    }
+    
+    // 日程提醒
+    @IBAction func RemindersPermissionRequest(_ sender: UIButton) {
+        
+        if PermissionsManager.isRestrictOrDenied(.reminders) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.reminders) {bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
+    }
+    
+    
+    // 通知权限
+    @IBAction func noticePremissionRequest(_ sender: UIButton) {
+        
+        if PermissionsManager.isRestrictOrDenied(.notification) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.notification) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
     }
     
     // 使用时定位
     @IBAction func locationWhenUsePermissionRequest(_ sender: UIButton) {
-        PermissionsManager().request(.locationWhenInUse) {
-            self.locationWhenInusePermission()
-            self.locationAlwaysPermission()
-            self.locationBackgroudPermission()
+        
+        if PermissionsManager.isRestrictOrDenied(.locationWhenInUse) {
+            PermissionsManager.jumpSetting()
+            return
         }
-        if PermissionsManager().isNotDetermined(.locationWhenInUse) {}
-        else if PermissionsManager().isAuthorized(.locationWhenInUse) {}
-        else if PermissionsManager().isRestrictOrDenied(.locationWhenInUse) {PermissionsManager.jumpSetting()}
+        PermissionsManager.request(.locationWhenInUse) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
     }
     
     // 前后台定位（IOS11 以后就降级了）
     @IBAction func locationAlwaysPermissionRequest(_ sender: UIButton) {
-        PermissionsManager().request(.locationAlways) {
-            self.locationAlwaysPermission()
-            self.locationWhenInusePermission()
-            self.locationBackgroudPermission()
+        
+        if PermissionsManager.isRestrictOrDenied(.locationAlways) {
+            PermissionsManager.jumpSetting()
+            return
         }
-        if PermissionsManager().isNotDetermined(.locationAlways) {}
-        else if PermissionsManager().isAuthorized(.locationAlways) {}
-        else if PermissionsManager().isRestrictOrDenied(.locationAlways) {PermissionsManager.jumpSetting()}
+        PermissionsManager.request(.locationAlways) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
     }
     
     // 前后台定位（IOS11开始生效，需要在info.plist设置下：
     // 1. Privacy - Location Always and When In Use Usage Description
     // 2. targets - Capabilities - Background Modes - location Update 打钩
     @IBAction func locationBackgroundPermissionRequest(_ sender: UIButton) {
-        PermissionsManager().request(.locationWithBackground) {
-            self.locationBackgroudPermission()
-            self.locationWhenInusePermission()
-            self.locationAlwaysPermission()
+       
+        if PermissionsManager.isRestrictOrDenied(.locationWithBackground) {
+            PermissionsManager.jumpSetting()
+            return
         }
-        if PermissionsManager().isNotDetermined(.locationWithBackground) {}
-        else if PermissionsManager().isAuthorized(.locationWithBackground) {}
-        else if PermissionsManager().isRestrictOrDenied(.locationWithBackground) {PermissionsManager.jumpSetting()}
-    }
-    
-    // 日历
-    @IBAction func CalendarPermissionRequest(_ sender: UIButton) {
-        
-        PermissionsManager().request(.calendar) {
-            self.calendarPermission()
-            
+        PermissionsManager.request(.locationWithBackground) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
         }
-        if PermissionsManager().isNotDetermined(.calendar) {}
-        else if PermissionsManager().isAuthorized(.calendar) {}
-        else if PermissionsManager().isRestrictOrDenied(.calendar) {PermissionsManager.jumpSetting()}
     }
-    
-    // 联系人
-    @IBAction func ContactsPermissionRequest(_ sender: UIButton) {
-        
-        PermissionsManager().request(.contacts) {
-            self.contactsPermission()
-            
-        }
-        if PermissionsManager().isNotDetermined(.contacts) {}
-        else if PermissionsManager().isAuthorized(.contacts) {}
-        else if PermissionsManager().isRestrictOrDenied(.contacts) {PermissionsManager.jumpSetting()}
-    }
-    
-    // 日程提醒
-    @IBAction func RemindersPermissionRequest(_ sender: UIButton) {
-        
-        PermissionsManager().request(.reminders) {
-            self.remindersPermission()
-            
-        }
-        if PermissionsManager().isNotDetermined(.reminders) {}
-        else if PermissionsManager().isAuthorized(.reminders) {}
-        else if PermissionsManager().isRestrictOrDenied(.reminders) {PermissionsManager.jumpSetting()}
-    }
-    
     
     // jumpSetting
     @IBAction func jumpSetting() {

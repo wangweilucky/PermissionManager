@@ -9,7 +9,20 @@
 import Foundation
 import MapKit
 
-class WWRequestPermissionAlwaysAuthorizationLocationHandler: NSObject, CLLocationManagerDelegate {
+/*
+ kCLAuthorizationStatusNotDetermined                  //用户尚未对该应用程序作出选择
+ kCLAuthorizationStatusRestricted                     //应用程序的定位权限被限制
+ kCLAuthorizationStatusAuthorizedAlways               //允许一直获取定位
+ kCLAuthorizationStatusAuthorizedWhenInUse            //在使用时允许获取定位
+ kCLAuthorizationStatusAuthorized                     //已废弃，相当于一直允许获取定位
+ kCLAuthorizationStatusDenied                         //拒绝获取定位
+ */
+
+typealias PermissionLocationClosure = (Bool) ->Void
+
+protocol WWRequestPermissionLocationProtocol {}
+
+extension WWRequestPermissionLocationProtocol{
     func isNotDetermined() -> Bool {
         let status = CLLocationManager.authorizationStatus()
         return status == .notDetermined
@@ -19,52 +32,64 @@ class WWRequestPermissionAlwaysAuthorizationLocationHandler: NSObject, CLLocatio
         let status = CLLocationManager.authorizationStatus()
         return status == .restricted || status == .denied
     }
+}
+
+// 获取定位状态
+private var status: CLAuthorizationStatus {
+    let status = CLLocationManager.authorizationStatus()
+    return status
+}
+
+class PermissionAlwaysLocationHandler
+: NSObject
+, CLLocationManagerDelegate
+, WWRequestPermissionLocationProtocol {
     
-    static var share: WWRequestPermissionAlwaysAuthorizationLocationHandler?
+    static var share = PermissionAlwaysLocationHandler()
     
     lazy var locationManager: CLLocationManager = {
-        return CLLocationManager()
+        let locationManager = CLLocationManager()
+        return locationManager
     }()
     
-    var complectionHandler: WWRequestPermissionAuthorizationHandlerCompletionBlock?
+    var complectionHandler: PermissionLocationClosure?
     
     private var whenInUseNotRealChangeStatus: Bool = false
     
-    func request(_ complectionHandler: @escaping WWRequestPermissionAuthorizationHandlerCompletionBlock) {
+    func request(_ complectionHandler: @escaping PermissionLocationClosure) {
         
         self.complectionHandler = complectionHandler
-        
-        let status = CLLocationManager.authorizationStatus()
         
         switch status {
-        case .notDetermined:
-            locationManager.delegate = self
-            locationManager.requestAlwaysAuthorization()
-        case .authorizedWhenInUse:
-            whenInUseNotRealChangeStatus = true
-            locationManager.delegate = self
-            locationManager.requestAlwaysAuthorization()
-        default:
+        case .notDetermined, .authorizedWhenInUse:
+           locationManager.delegate = self
+           locationManager.requestAlwaysAuthorization()
+        case .denied, .restricted:
+            complectionHandler(false)
+        case .authorizedAlways:
             complectionHandler(isAuthorized())
         }
     }
     
     func isAuthorized() -> Bool {
-        let status = CLLocationManager.authorizationStatus()
-        if status == .authorizedAlways {
-            return true
+        if #available(iOS 8.0, *) {
+            if status == .authorizedAlways {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            if status == .authorized {
+                return true
+            } else {
+                return false
+            }
         }
-        return false
     }
     
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
-        if whenInUseNotRealChangeStatus {
-            if status == .authorizedWhenInUse {return}
-        }
-        
-        if status == .notDetermined {return}
+    func locationManager(_ manager: CLLocationManager,
+                         didChangeAuthorization status: CLAuthorizationStatus) {
         
         if let complectionHandler = complectionHandler {
             complectionHandler(isAuthorized())
@@ -76,55 +101,60 @@ class WWRequestPermissionAlwaysAuthorizationLocationHandler: NSObject, CLLocatio
     }
 }
 
-class WWRequestPermissionWhenInUseAuthorizationLocationHandler: NSObject, CLLocationManagerDelegate {
+class PermissionWhenInUseLocationHandler
+: NSObject
+, CLLocationManagerDelegate
+, WWRequestPermissionLocationProtocol {
     
-    static var share: WWRequestPermissionWhenInUseAuthorizationLocationHandler?
+    static var share = PermissionWhenInUseLocationHandler()
     
     lazy var locationManager: CLLocationManager = {
-        return CLLocationManager()
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+        return locationManager
     }()
     
-    var complectionHandler: WWRequestPermissionAuthorizationHandlerCompletionBlock?
+    var complectionHandler: PermissionLocationClosure?
     
     private var whenInUseNotRealChangeStatus: Bool = false
     
-    func request(_ complectionHandler: @escaping WWRequestPermissionAuthorizationHandlerCompletionBlock) {
+    // notDetermined restricted denied authorizedAlways authorizedWhenInUse authorized
+    func request(_ complectionHandler: @escaping PermissionLocationClosure) {
         
         self.complectionHandler = complectionHandler
-        
-        let status = CLLocationManager.authorizationStatus()
-        
-        if status == .notDetermined || status == .authorizedAlways {
-            locationManager.delegate = self
-            locationManager.requestWhenInUseAuthorization()
-        } else {
-             complectionHandler(isAuthorized())
+    
+        switch status {
+        case .notDetermined , .authorizedAlways:
+           locationManager.delegate = self
+           locationManager.requestWhenInUseAuthorization()
+            
+        case .denied, .restricted:
+            complectionHandler(false)
+            
+        case .authorizedWhenInUse:
+            complectionHandler(isAuthorized())
         }
     }
     
     func isAuthorized() -> Bool {
-        let status = CLLocationManager.authorizationStatus()
-        if status == .authorizedWhenInUse {
-            return true
+        if #available(iOS 8.0, *) {
+            if status == .authorizedWhenInUse {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            if status == .authorized {
+                return true
+            } else {
+                return false
+            }
         }
-        return false
-    }
-    
-    func isNotDetermined() -> Bool {
-        let status = CLLocationManager.authorizationStatus()
-        return status == .notDetermined
-    }
-    
-    func isRestrictOrDenied() -> Bool {
-        let status = CLLocationManager.authorizationStatus()
-        return status == .restricted || status == .denied
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
-        if status == .notDetermined {
-            return
-        }
+        if status == .notDetermined { return }
         
         if let complectionHandler = complectionHandler {
             complectionHandler(isAuthorized())
@@ -136,8 +166,11 @@ class WWRequestPermissionWhenInUseAuthorizationLocationHandler: NSObject, CLLoca
     }
 }
 
-class WWRequestPermissionLocationWithBackgroundHandler: WWRequestPermissionAlwaysAuthorizationLocationHandler {
-    override func request(_ complectionHandler: @escaping WWRequestPermissionAlwaysAuthorizationLocationHandler.WWRequestPermissionAuthorizationHandlerCompletionBlock) {
+class PermissionLocationWithBackgroundHandler: PermissionAlwaysLocationHandler {
+   
+    override func request(_ complectionHandler: @escaping PermissionLocationClosure)
+    {
+        // iOS9.0以上系统除了配置info之外，还需要添加这行代码，才能实现后台定位，否则程序会crash
         if #available(iOS 9.0, *) {
             locationManager.allowsBackgroundLocationUpdates = true
         }
@@ -146,10 +179,3 @@ class WWRequestPermissionLocationWithBackgroundHandler: WWRequestPermissionAlway
     
 }
 
-extension WWRequestPermissionAlwaysAuthorizationLocationHandler {
-    typealias WWRequestPermissionAuthorizationHandlerCompletionBlock = (Bool) ->Void
-}
-
-extension WWRequestPermissionWhenInUseAuthorizationLocationHandler {
-    typealias WWRequestPermissionAuthorizationHandlerCompletionBlock = (Bool) ->Void
-}
