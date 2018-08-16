@@ -194,6 +194,8 @@ extension ViewController {
     /// 相机权限
     @IBAction func cameraPermissionRequest(_ sender: UIButton) {
         
+        
+        
         if PermissionsManager.isRestrictOrDenied(.camera) {
             PermissionsManager.jumpSetting()
             return
