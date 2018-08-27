@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
 s.name = 'PermissionManager'
-s.version = '0.5.3'
+s.version = '0.5.6'
 s.license = 'MIT'
 s.summary = 'PermissionManager can action permissions'
 s.homepage = 'https://github.com/WangWei1993'

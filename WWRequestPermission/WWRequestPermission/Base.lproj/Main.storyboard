@@ -21,33 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCn-k8-Uif">
-                                <rect key="frame" x="141" y="120" width="92" height="30"/>
-                                <state key="normal" title="请求相机权限">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="cameraPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PJ8-7c-0oO"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0K-La-ALF">
-                                <rect key="frame" x="141" y="160" width="92" height="30"/>
-                                <state key="normal" title="请求相册权限">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="photoLibraryPremissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="us7-8H-n6i"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIg-4V-RAt">
-                                <rect key="frame" x="141" y="200" width="92" height="30"/>
-                                <state key="normal" title="请求通知权限">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="noticePremissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K0a-Ou-aut"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zw7-l1-Sts">
                                 <rect key="frame" x="140.5" y="637" width="94" height="30"/>
                                 <state key="normal" title="跳转到setting">
@@ -57,112 +30,228 @@
                                     <action selector="jumpSetting" destination="BYZ-38-t0r" eventType="touchUpInside" id="I3l-dZ-2KU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YES-HF-n2N">
-                                <rect key="frame" x="133.5" y="240" width="108" height="30"/>
-                                <state key="normal" title="请求麦克风权限">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="microphonePermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0ox-lB-x5a"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qU9-sl-VpJ">
-                                <rect key="frame" x="118" y="290" width="139" height="30"/>
-                                <state key="normal" title="location_WhenInUse">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="locationWhenUsePermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nlL-QO-Y73"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAU-A5-02S">
-                                <rect key="frame" x="133" y="330" width="109" height="30"/>
-                                <state key="normal" title="location_Always">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="locationAlwaysPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1ZR-Ng-zfJ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FF9-Qu-oCt">
-                                <rect key="frame" x="116" y="370" width="143" height="30"/>
-                                <state key="normal" title="location_Background">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="locationBackgroundPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="77S-Fg-Z3b"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NS-so-ibE">
-                                <rect key="frame" x="164.5" y="410" width="46" height="30"/>
-                                <state key="normal" title="联系人">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="ContactsPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zw8-QK-Wqq"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHn-pB-8Zh">
-                                <rect key="frame" x="172" y="450" width="31" height="30"/>
-                                <state key="normal" title="日程">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="RemindersPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kcE-Qc-naJ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCW-c0-T4b">
-                                <rect key="frame" x="172" y="490" width="31" height="30"/>
-                                <state key="normal" title="日历">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="CalendarPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ToJ-Q7-iCf"/>
-                                </connections>
-                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cy-hK-QvW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZr-VR-Fdt">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="480"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0n-oS-bKa">
+                                                <rect key="frame" x="134" y="110" width="108" height="30"/>
+                                                <state key="normal" title="请求麦克风权限">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="microphonePermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4SH-rL-WHO"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXi-g3-fBw">
+                                                <rect key="frame" x="133.5" y="170" width="109" height="30"/>
+                                                <state key="normal" title="location_Always">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="locationAlwaysPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ofg-CH-kGk"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zfw-sR-2px">
+                                                <rect key="frame" x="165" y="230" width="46" height="30"/>
+                                                <state key="normal" title="联系人">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="ContactsPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G6E-SU-aza"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPo-sM-sLm">
+                                                <rect key="frame" x="141.5" y="50" width="92" height="30"/>
+                                                <state key="normal" title="请求相册权限">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="photoLibraryPremissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HwZ-yg-4cN"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skc-wu-V1x">
+                                                <rect key="frame" x="118.5" y="140" width="139" height="30"/>
+                                                <state key="normal" title="location_WhenInUse">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="locationWhenUsePermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i8p-OJ-UAP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAa-fQ-eln">
+                                                <rect key="frame" x="141.5" y="20" width="92" height="30"/>
+                                                <state key="normal" title="请求相机权限">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cameraPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6xq-Y2-XrN"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tW2-9E-1R9">
+                                                <rect key="frame" x="172.5" y="290" width="31" height="30"/>
+                                                <state key="normal" title="日历">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="CalendarPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VJa-qt-axr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyq-s1-l3G">
+                                                <rect key="frame" x="141.5" y="80" width="92" height="30"/>
+                                                <state key="normal" title="请求通知权限">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="noticePremissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sJC-Ny-hNV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frF-aH-1q7">
+                                                <rect key="frame" x="172.5" y="260" width="31" height="30"/>
+                                                <state key="normal" title="日程">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="RemindersPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f4Q-mD-aF0"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hy4-kU-CIj">
+                                                <rect key="frame" x="116.5" y="200" width="143" height="30"/>
+                                                <state key="normal" title="location_Background">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="locationBackgroundPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7NN-G6-JSn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KO-W9-RER">
+                                                <rect key="frame" x="134" y="320" width="108" height="30"/>
+                                                <state key="normal" title="运动与健身权限">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="CalendarPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3cW-Jf-JKH"/>
+                                                    <action selector="motionPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="550-7g-1fD"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AO3-Ca-dvq">
+                                                <rect key="frame" x="157" y="350" width="62" height="30"/>
+                                                <state key="normal" title="健康权限">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="CalendarPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4cp-UN-20c"/>
+                                                    <action selector="healthPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gaL-US-IpW"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Tg-FY-RHg">
+                                                <rect key="frame" x="142" y="380" width="92" height="30"/>
+                                                <state key="normal" title="健康分享权限">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="CalendarPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aNs-JI-Ks5"/>
+                                                    <action selector="healthSharePermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QGZ-iS-4iI"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQt-Fr-Gq7">
+                                                <rect key="frame" x="173" y="410" width="31" height="30"/>
+                                                <state key="normal" title="蓝牙">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="bluetoothPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pso-cp-6Gm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVA-Fn-Adq">
+                                                <rect key="frame" x="150" y="440" width="77" height="30"/>
+                                                <state key="normal" title="媒体资料库">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="CalendarPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mRi-LV-alx"/>
+                                                    <action selector="appleMusicPermissionRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vUs-4b-rxn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="SPo-sM-sLm" firstAttribute="centerX" secondItem="dAa-fQ-eln" secondAttribute="centerX" id="1TQ-yy-lMi"/>
+                                            <constraint firstItem="KXi-g3-fBw" firstAttribute="top" secondItem="Skc-wu-V1x" secondAttribute="bottom" id="30i-cH-83P"/>
+                                            <constraint firstItem="6Tg-FY-RHg" firstAttribute="top" secondItem="AO3-Ca-dvq" secondAttribute="bottom" id="7MB-1l-CMN"/>
+                                            <constraint firstItem="6Tg-FY-RHg" firstAttribute="centerX" secondItem="AO3-Ca-dvq" secondAttribute="centerX" id="7TW-Ee-Zz9"/>
+                                            <constraint firstItem="GVA-Fn-Adq" firstAttribute="centerX" secondItem="FQt-Fr-Gq7" secondAttribute="centerX" id="ASB-bh-gw4"/>
+                                            <constraint firstItem="o0n-oS-bKa" firstAttribute="centerX" secondItem="Xyq-s1-l3G" secondAttribute="centerX" id="Dka-Sg-10d"/>
+                                            <constraint firstItem="AO3-Ca-dvq" firstAttribute="top" secondItem="5KO-W9-RER" secondAttribute="bottom" id="ESJ-qc-mem"/>
+                                            <constraint firstItem="GVA-Fn-Adq" firstAttribute="top" secondItem="FQt-Fr-Gq7" secondAttribute="bottom" id="GR7-1w-iIH"/>
+                                            <constraint firstItem="Zfw-sR-2px" firstAttribute="centerX" secondItem="Hy4-kU-CIj" secondAttribute="centerX" id="I9g-C7-jBL"/>
+                                            <constraint firstItem="FQt-Fr-Gq7" firstAttribute="top" secondItem="6Tg-FY-RHg" secondAttribute="bottom" id="Ocu-o2-uQb"/>
+                                            <constraint firstItem="Zfw-sR-2px" firstAttribute="top" secondItem="Hy4-kU-CIj" secondAttribute="bottom" id="P5i-hF-pal"/>
+                                            <constraint firstItem="tW2-9E-1R9" firstAttribute="top" secondItem="frF-aH-1q7" secondAttribute="bottom" id="UKu-qr-1tJ"/>
+                                            <constraint firstItem="tW2-9E-1R9" firstAttribute="centerX" secondItem="frF-aH-1q7" secondAttribute="centerX" id="WGG-qi-ycM"/>
+                                            <constraint firstItem="SPo-sM-sLm" firstAttribute="top" secondItem="dAa-fQ-eln" secondAttribute="bottom" id="Xet-h6-oUS"/>
+                                            <constraint firstItem="dAa-fQ-eln" firstAttribute="top" secondItem="xZr-VR-Fdt" secondAttribute="top" constant="20" id="ZYs-4s-EGH"/>
+                                            <constraint firstItem="AO3-Ca-dvq" firstAttribute="centerX" secondItem="5KO-W9-RER" secondAttribute="centerX" id="a11-aK-ao8"/>
+                                            <constraint firstItem="o0n-oS-bKa" firstAttribute="top" secondItem="Xyq-s1-l3G" secondAttribute="bottom" id="aD3-9g-Q6G"/>
+                                            <constraint firstItem="FQt-Fr-Gq7" firstAttribute="centerX" secondItem="6Tg-FY-RHg" secondAttribute="centerX" id="avf-AN-LkM"/>
+                                            <constraint firstItem="Skc-wu-V1x" firstAttribute="top" secondItem="o0n-oS-bKa" secondAttribute="bottom" id="dj3-R0-IzQ"/>
+                                            <constraint firstItem="frF-aH-1q7" firstAttribute="centerX" secondItem="Zfw-sR-2px" secondAttribute="centerX" id="f49-Ll-TG0"/>
+                                            <constraint firstItem="KXi-g3-fBw" firstAttribute="centerX" secondItem="Skc-wu-V1x" secondAttribute="centerX" id="gVo-qC-yhl"/>
+                                            <constraint firstItem="Xyq-s1-l3G" firstAttribute="top" secondItem="SPo-sM-sLm" secondAttribute="bottom" id="gkU-1f-E2t"/>
+                                            <constraint firstItem="Hy4-kU-CIj" firstAttribute="centerX" secondItem="KXi-g3-fBw" secondAttribute="centerX" id="iDQ-7t-C6F"/>
+                                            <constraint firstItem="Hy4-kU-CIj" firstAttribute="top" secondItem="KXi-g3-fBw" secondAttribute="bottom" id="jd2-uY-EIt"/>
+                                            <constraint firstItem="5KO-W9-RER" firstAttribute="centerX" secondItem="tW2-9E-1R9" secondAttribute="centerX" id="nhB-qX-zSj"/>
+                                            <constraint firstItem="dAa-fQ-eln" firstAttribute="centerX" secondItem="xZr-VR-Fdt" secondAttribute="centerX" id="oMT-Je-OVw"/>
+                                            <constraint firstItem="frF-aH-1q7" firstAttribute="top" secondItem="Zfw-sR-2px" secondAttribute="bottom" id="qHy-ZP-94l"/>
+                                            <constraint firstAttribute="bottom" secondItem="GVA-Fn-Adq" secondAttribute="bottom" constant="10" id="tre-R7-2Je"/>
+                                            <constraint firstItem="Skc-wu-V1x" firstAttribute="centerX" secondItem="o0n-oS-bKa" secondAttribute="centerX" id="uds-GT-XO4"/>
+                                            <constraint firstItem="5KO-W9-RER" firstAttribute="top" secondItem="tW2-9E-1R9" secondAttribute="bottom" id="uzW-RP-4Xe"/>
+                                            <constraint firstItem="Xyq-s1-l3G" firstAttribute="centerX" secondItem="SPo-sM-sLm" secondAttribute="centerX" id="wDk-yB-hoS"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="xZr-VR-Fdt" secondAttribute="trailing" id="9IR-ON-MHW"/>
+                                    <constraint firstItem="xZr-VR-Fdt" firstAttribute="top" secondItem="4cy-hK-QvW" secondAttribute="top" id="Lm1-hI-dZC"/>
+                                    <constraint firstItem="xZr-VR-Fdt" firstAttribute="leading" secondItem="4cy-hK-QvW" secondAttribute="leading" id="TDw-PA-dRE"/>
+                                    <constraint firstAttribute="bottom" secondItem="xZr-VR-Fdt" secondAttribute="bottom" constant="92" id="mJK-mU-ddv"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xCW-c0-T4b" firstAttribute="top" secondItem="yHn-pB-8Zh" secondAttribute="bottom" constant="10" id="0Yq-RU-wwg"/>
-                            <constraint firstItem="sCn-k8-Uif" firstAttribute="top" secondItem="NPw-ZB-Y9F" secondAttribute="bottom" constant="100" id="89G-XI-6Qb"/>
-                            <constraint firstItem="qU9-sl-VpJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8e6-Nj-Eho"/>
-                            <constraint firstItem="qU9-sl-VpJ" firstAttribute="top" secondItem="YES-HF-n2N" secondAttribute="bottom" constant="20" id="Dgs-zr-G9B"/>
-                            <constraint firstItem="FF9-Qu-oCt" firstAttribute="top" secondItem="GAU-A5-02S" secondAttribute="bottom" constant="10" id="Flu-Fj-RaU"/>
-                            <constraint firstItem="xCW-c0-T4b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GOt-Op-TR4"/>
+                            <constraint firstItem="4cy-hK-QvW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ehq-I6-B5u"/>
                             <constraint firstItem="SNx-OG-3Ih" firstAttribute="top" secondItem="Zw7-l1-Sts" secondAttribute="bottom" id="Mbt-BL-IvI"/>
-                            <constraint firstItem="DIg-4V-RAt" firstAttribute="top" secondItem="B0K-La-ALF" secondAttribute="bottom" constant="10" id="Q5M-ki-YCl"/>
-                            <constraint firstItem="sCn-k8-Uif" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ROK-r5-QkV"/>
-                            <constraint firstItem="DIg-4V-RAt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TLS-jm-SfH"/>
-                            <constraint firstItem="YES-HF-n2N" firstAttribute="top" secondItem="DIg-4V-RAt" secondAttribute="bottom" constant="10" id="U5J-W3-wfi"/>
-                            <constraint firstItem="GAU-A5-02S" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZGC-5N-9VU"/>
-                            <constraint firstItem="FF9-Qu-oCt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zf8-Cn-7q8"/>
-                            <constraint firstItem="B0K-La-ALF" firstAttribute="top" secondItem="sCn-k8-Uif" secondAttribute="bottom" constant="10" id="fZC-ie-rWu"/>
-                            <constraint firstItem="2NS-so-ibE" firstAttribute="top" secondItem="FF9-Qu-oCt" secondAttribute="bottom" constant="10" id="hlq-7f-Is5"/>
-                            <constraint firstItem="yHn-pB-8Zh" firstAttribute="top" secondItem="2NS-so-ibE" secondAttribute="bottom" constant="10" id="kOJ-kG-ZCQ"/>
+                            <constraint firstItem="xZr-VR-Fdt" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Ylp-mB-VbU"/>
+                            <constraint firstItem="4cy-hK-QvW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="g3Q-Yj-4jA"/>
                             <constraint firstItem="Zw7-l1-Sts" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kaH-qF-wqx"/>
-                            <constraint firstItem="B0K-La-ALF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lSZ-e6-SPk"/>
-                            <constraint firstItem="yHn-pB-8Zh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qCg-4C-JN1"/>
-                            <constraint firstItem="GAU-A5-02S" firstAttribute="top" secondItem="qU9-sl-VpJ" secondAttribute="bottom" constant="10" id="rxO-vh-3mK"/>
-                            <constraint firstItem="YES-HF-n2N" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ulI-W6-KYW"/>
-                            <constraint firstItem="2NS-so-ibE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yJS-dt-kkI"/>
+                            <constraint firstAttribute="bottom" secondItem="4cy-hK-QvW" secondAttribute="bottom" constant="44" id="uO6-6q-y8c"/>
+                            <constraint firstAttribute="trailing" secondItem="4cy-hK-QvW" secondAttribute="trailing" id="wag-UZ-3cC"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="calendarBtn" destination="xCW-c0-T4b" id="HFv-ZM-2CW"/>
-                        <outlet property="cameraBtn" destination="sCn-k8-Uif" id="LPG-HX-qGB"/>
-                        <outlet property="contactsBtn" destination="2NS-so-ibE" id="plb-nY-Bfv"/>
-                        <outlet property="locationAlwaysBtn" destination="GAU-A5-02S" id="Eut-W0-iaq"/>
-                        <outlet property="locationBackgroudBtn" destination="FF9-Qu-oCt" id="QtP-Uh-rr9"/>
-                        <outlet property="locationWhenInuseBtn" destination="qU9-sl-VpJ" id="0c6-eA-Kyg"/>
-                        <outlet property="microphoneBtn" destination="YES-HF-n2N" id="Fi6-rn-RfE"/>
-                        <outlet property="noticeBtn" destination="DIg-4V-RAt" id="orX-e8-wos"/>
-                        <outlet property="photoLibraryBtn" destination="B0K-La-ALF" id="FcD-5P-Z0P"/>
-                        <outlet property="remindersBtn" destination="yHn-pB-8Zh" id="J1J-FO-qTi"/>
+                        <outlet property="appleMusicBtn" destination="GVA-Fn-Adq" id="Awf-Gg-Siv"/>
+                        <outlet property="bluetoothBtn" destination="FQt-Fr-Gq7" id="MWC-Q6-qzp"/>
+                        <outlet property="calendarBtn" destination="Zfw-sR-2px" id="Ieo-hk-oJq"/>
+                        <outlet property="cameraBtn" destination="dAa-fQ-eln" id="4dX-qa-X5i"/>
+                        <outlet property="contactsBtn" destination="frF-aH-1q7" id="l54-Pu-T93"/>
+                        <outlet property="healthBtn" destination="AO3-Ca-dvq" id="DBC-6D-DcU"/>
+                        <outlet property="healthShareBtn" destination="6Tg-FY-RHg" id="lGE-WS-B3I"/>
+                        <outlet property="locationAlwaysBtn" destination="KXi-g3-fBw" id="t9H-lu-shA"/>
+                        <outlet property="locationBackgroudBtn" destination="Hy4-kU-CIj" id="xIG-sN-JIj"/>
+                        <outlet property="locationWhenInuseBtn" destination="Skc-wu-V1x" id="E3F-JU-dDW"/>
+                        <outlet property="microphoneBtn" destination="o0n-oS-bKa" id="hGC-Zx-J62"/>
+                        <outlet property="motionBtn" destination="5KO-W9-RER" id="gI2-hk-CJH"/>
+                        <outlet property="noticeBtn" destination="Xyq-s1-l3G" id="MfS-ry-AmN"/>
+                        <outlet property="photoLibraryBtn" destination="SPo-sM-sLm" id="fis-lI-wKt"/>
+                        <outlet property="remindersBtn" destination="tW2-9E-1R9" id="OgQ-Am-ssH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1020" y="34"/>
+            <point key="canvasLocation" x="-1020" y="33.733133433283363"/>
         </scene>
     </scenes>
 </document>

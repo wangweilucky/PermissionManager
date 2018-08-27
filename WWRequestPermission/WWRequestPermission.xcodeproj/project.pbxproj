@@ -88,12 +88,12 @@
 		4AE2CCB81FF3BD4E004108A6 /* WWPermissionManager */ = {
 			isa = PBXGroup;
 			children = (
-				4A97A8FE2075B4AA00BFF02C /* PermissionProtocol.swift */,
-				4AE2CCB91FF3BD4E004108A6 /* Permissions.swift */,
-				4AE2CCBA1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift */,
 				4AE2CCBB1FF3BD4E004108A6 /* PermissionManager.swift */,
 				4A97A9002075B4E700BFF02C /* PermissionManagerProtocol.swift */,
 				0049D37621240160003DD0CE /* PermissionManagerProtocol+Extension.swift */,
+				4AE2CCB91FF3BD4E004108A6 /* Permissions.swift */,
+				4A97A8FE2075B4AA00BFF02C /* PermissionProtocol.swift */,
+				4AE2CCBA1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift */,
 			);
 			path = WWPermissionManager;
 			sourceTree = SOURCE_ROOT;

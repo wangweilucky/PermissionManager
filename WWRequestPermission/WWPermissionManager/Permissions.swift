@@ -273,8 +273,9 @@ class WWCalendarPermission: PermissionProtocol {
     }
 }
 
-
-
+// The app's Info.plist must contain an NSLocationUsageDescription key
+// The app's Info.plist must contain an NSLocationWhenInUseUsageDescription key
+// The app's Info.plist must contain an NSLocationAlwaysUsageDescription key
 class WWLocationPermission: PermissionProtocol {
     
     enum WWLocationType {

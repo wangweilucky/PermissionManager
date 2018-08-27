@@ -22,32 +22,13 @@ private let Contacts   = "联系人权限"
 private let Reminders  = "日程权限"
 private let Calendar   = "日历权限"
 
+private let Motion   = "运动与健身权限"
+private let Health   = "健康权限"
+private let HealthShare   = "健康分享权限"
+private let Bluetooth = "蓝牙"
+private let AppleMusic = "媒体资料库"
 
 /*
- <!-- 相册 -->
- <key>NSPhotoLibraryUsageDescription</key>
- <string>App需要您的同意,才能相册</string>
- <!-- 相机 -->
- <key>NSCameraUsageDescription</key>
- <string>App需要您的同意,才能相机</string>
- <!-- 麦克风 -->
- <key>NSMicrophoneUsageDescription</key>
- <string>App需要您的同意,才能麦克风</string>
- <!-- 位置 -->
- <key>NSLocationUsageDescription</key>
- <string>App需要您的同意,才能位置</string>
- <!-- 在使用期间位置 -->
- <key>NSLocationWhenInUseUsageDescription</key>
- <string>App需要您的同意,才能在使用期间位置</string>
- <!-- 始终位置 -->
- <key>NSLocationAlwaysUsageDescription</key>
- <string>App需要您的同意,才能始终位置</string>
- <!-- 日历 -->
- <key>NSCalendarsUsageDescription</key>
- <string>App需要您的同意,才能日历</string>
- <!-- 提醒事项 -->
- <key>NSRemindersUsageDescription</key>
- <string>App需要您的同意,才能提醒事项</string>
  <!-- 运动与健身 -->
  <key>NSMotionUsageDescription</key> <string>App需要您的同意,才能运动与健身</string>
  <!-- 健康更新 -->
@@ -56,6 +37,7 @@ private let Calendar   = "日历权限"
  <!-- 健康分享 -->
  <key>NSHealthShareUsageDescription</key>
  <string>App需要您的同意,才能健康分享</string>
+ 
  <!-- 蓝牙 -->
  <key>NSBluetoothPeripheralUsageDescription</key>
  <string>App需要您的同意,才能蓝牙</string>
@@ -86,6 +68,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var calendarBtn: UIButton!
     @IBOutlet weak var contactsBtn: UIButton!
     @IBOutlet weak var remindersBtn: UIButton!
+    @IBOutlet weak var motionBtn: UIButton!
+    @IBOutlet weak var healthBtn: UIButton!
+    @IBOutlet weak var healthShareBtn: UIButton!
+    @IBOutlet weak var bluetoothBtn: UIButton!
+    @IBOutlet weak var appleMusicBtn: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -315,6 +303,32 @@ extension ViewController {
             self.showButtonUI(sender: sender, bool: bool)
         }
     }
+    
+    // 运动与健身权限
+    @IBAction func motionPermissionRequest(_ sender: UIButton) {
+    
+    }
+    
+    // 健康权限
+    @IBAction func healthPermissionRequest(_ sender: UIButton) {
+        
+    }
+    
+    // 运动与健身权限
+    @IBAction func healthSharePermissionRequest(_ sender: UIButton) {
+        
+    }
+    
+    // 健康分享权限
+    @IBAction func bluetoothPermissionRequest(_ sender: UIButton) {
+        
+    }
+    
+    // 媒体资料库
+    @IBAction func appleMusicPermissionRequest(_ sender: UIButton) {
+        
+    }
+    
     
     // jumpSetting
     @IBAction func jumpSetting() {
