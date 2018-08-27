@@ -13,6 +13,9 @@ import MapKit
 import EventKit
 import Contacts
 import AVFoundation
+import StoreKit
+import HealthKit
+import CoreMotion
 
 
 /// The app's Info.plist must contain an NSCameraUsageDescription key
@@ -43,7 +46,7 @@ class WWCameraPermission: PermissionProtocol {
     }
     
     func isRestrictOrDenied() -> Bool {
-        return status == .restricted || AVCaptureDevice.authorizationStatus(for: .video) == .denied
+        return status == .restricted || status == .denied
     }
 }
 
@@ -348,6 +351,138 @@ class WWLocationPermission: PermissionProtocol {
         }
     }
 }
+
+// The app's Info.plist must contain an NSMotionUsageDescriptionApp key 
+class WWMotionPermission: PermissionProtocol {
+    
+//    var status: CMAuthorizationStatus {
+//        return CMMotionActivityManager.
+//    }
+//    
+//    // denied undetermined granted
+//    func request(complectionHandler: @escaping PermissionClosure) {
+//        CMMotionActivityManager.
+//    }
+//    
+//    func isNotDetermined() -> Bool {
+//        return status == .undetermined
+//    }
+//    
+//    func isAuthorized() -> Bool {
+//        return status == .granted
+//    }
+//    
+//    func isRestrictOrDenied() -> Bool {
+//        return status == .denied
+//    }
+}
+
+// The app's Info.plist must contain an NSMotionUsageDescriptionApp key
+class WWAppleMusicPermission: PermissionProtocol {
+    
+    @available(iOS 9.3, *)
+    var status: SKCloudServiceAuthorizationStatus {
+        return SKCloudServiceController.authorizationStatus()
+    }
+    
+    // denied undetermined granted
+    func request(complectionHandler: @escaping PermissionClosure) {
+        if #available(iOS 9.3, *) {
+            SKCloudServiceController.requestAuthorization { (status) in
+                switch status {
+                case .authorized:
+                    complectionHandler(true)
+                    
+                case .denied, .notDetermined, .restricted:
+                    complectionHandler(false)
+                }
+            }
+        } else {
+            fatalError(WWgetLog(type: self))
+        }
+    }
+    
+    func isNotDetermined() -> Bool {
+        if #available(iOS 9.3, *) {
+            return status == .notDetermined
+        } else {
+            // Fallback on earlier versions
+            fatalError(WWgetLog(type: self))
+        }
+    }
+    
+    func isAuthorized() -> Bool {
+        if #available(iOS 9.3, *) {
+            return status == .authorized
+        } else {
+            // Fallback on earlier versions
+            fatalError(WWgetLog(type: self))
+        }
+    }
+    
+    func isRestrictOrDenied() -> Bool {
+        if #available(iOS 9.3, *) {
+            return status == .restricted || status == .denied
+        } else {
+            // Fallback on earlier versions
+            fatalError(WWgetLog(type: self))
+        }
+    }
+}
+
+
+//// The app's Info.plist must contain an NSHealthUpdateUsageDescription key
+//class WWHealthPermission: PermissionProtocol {
+//
+//    @available(iOS 9.3, *)
+//    var status: SKCloudServiceAuthorizationStatus {
+//        return SKCloudServiceController.authorizationStatus()
+//    }
+//
+//    // denied undetermined granted
+//    func request(complectionHandler: @escaping PermissionClosure) {
+//        if #available(iOS 9.3, *) {
+//            SKCloudServiceController.requestAuthorization { (status) in
+//                switch status {
+//                case .authorized:
+//                    complectionHandler(true)
+//
+//                case .denied, .notDetermined, .restricted:
+//                    complectionHandler(false)
+//                }
+//            }
+//        } else {
+//            fatalError(WWgetLog(type: self))
+//        }
+//    }
+//
+//    func isNotDetermined() -> Bool {
+//        if #available(iOS 9.3, *) {
+//            return status == .notDetermined
+//        } else {
+//            // Fallback on earlier versions
+//            fatalError(WWgetLog(type: self))
+//        }
+//    }
+//
+//    func isAuthorized() -> Bool {
+//        if #available(iOS 9.3, *) {
+//            return status == .authorized
+//        } else {
+//            // Fallback on earlier versions
+//            fatalError(WWgetLog(type: self))
+//        }
+//    }
+//
+//    func isRestrictOrDenied() -> Bool {
+//        if #available(iOS 9.3, *) {
+//            return status == .restricted || status == .denied
+//        } else {
+//            // Fallback on earlier versions
+//            fatalError(WWgetLog(type: self))
+//        }
+//    }
+//}
 
 
 

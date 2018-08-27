@@ -9,7 +9,11 @@
 import Foundation
 
 /// 各个权限接口
-@objc protocol PermissionProtocol {
+protocol PermissionProtocol {
+    
+//    associatedtype T
+//    
+//    var status: T {get}
     
     func request(complectionHandler: @escaping  PermissionClosure)
     
@@ -18,12 +22,6 @@ import Foundation
     func isAuthorized() -> Bool
     
     func isRestrictOrDenied() -> Bool
-    
-    @objc optional func isNotDetermined(_ closure: @escaping PermissionClosure)
-    
-    @objc optional func isAuthorized(_ closure: @escaping PermissionClosure)
-    
-    @objc optional func isRestrictOrDenied(_ closure: @escaping PermissionClosure)
     
 }
 

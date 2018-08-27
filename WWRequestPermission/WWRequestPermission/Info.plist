@@ -38,6 +38,8 @@
 	<string>日程提醒😯</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>日历😯</string>
+	<key>NSMotionUsageDescriptionApp</key>
+	<string>运动😯</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

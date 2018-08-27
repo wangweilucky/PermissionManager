@@ -89,6 +89,7 @@ class ViewController: UIViewController {
         contactsPermission()
         calendarPermission()
         remindersPermission()
+        motionPermission()
     }
     
     func cameraPermission() {
@@ -141,6 +142,11 @@ class ViewController: UIViewController {
         showButtonUI(sender: remindersBtn,
                      bool: PermissionsManager.isAuthorized(.reminders))
     }
+    
+    func motionPermission() {
+        showButtonUI(sender: motionBtn,
+                     bool: PermissionsManager.isAuthorized(.motion))
+    }
 }
 
 extension ViewController {
@@ -169,6 +175,16 @@ extension ViewController {
                 desc = Reminders
             case 10:
                 desc = Calendar
+            case 11:
+                desc = Motion
+            case 12:
+                desc = Health
+            case 13:
+                desc = HealthShare
+            case 14:
+                desc = Bluetooth
+            case 15:
+                desc = AppleMusic
             default:
                 desc = ""
             }
@@ -306,27 +322,57 @@ extension ViewController {
     
     // 运动与健身权限
     @IBAction func motionPermissionRequest(_ sender: UIButton) {
-    
+        if PermissionsManager.isRestrictOrDenied(.motion) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.motion) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
     }
     
     // 健康权限
     @IBAction func healthPermissionRequest(_ sender: UIButton) {
-        
+        if PermissionsManager.isRestrictOrDenied(.health) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.health) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
     }
     
-    // 运动与健身权限
+    // 健身分享权限
     @IBAction func healthSharePermissionRequest(_ sender: UIButton) {
-        
+        if PermissionsManager.isRestrictOrDenied(.healthShare) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.healthShare) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
     }
     
-    // 健康分享权限
+    // 蓝牙权限
     @IBAction func bluetoothPermissionRequest(_ sender: UIButton) {
-        
+        if PermissionsManager.isRestrictOrDenied(.bluetooth) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.bluetooth) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
     }
     
     // 媒体资料库
     @IBAction func appleMusicPermissionRequest(_ sender: UIButton) {
-        
+        if PermissionsManager.isRestrictOrDenied(.appleMusic) {
+            PermissionsManager.jumpSetting()
+            return
+        }
+        PermissionsManager.request(.appleMusic) { bool in
+            self.showButtonUI(sender: sender, bool: bool)
+        }
     }
     
     

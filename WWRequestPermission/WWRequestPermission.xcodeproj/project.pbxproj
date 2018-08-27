@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000604A52133F5D7005D2AC9 /* WWLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000604A42133F5D7005D2AC9 /* WWLog.swift */; };
 		0049D37721240160003DD0CE /* PermissionManagerProtocol+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049D37621240160003DD0CE /* PermissionManagerProtocol+Extension.swift */; };
 		4A38EFF51FEA7BA000F8D480 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A38EFF41FEA7BA000F8D480 /* AppDelegate.swift */; };
 		4A38EFF71FEA7BA000F8D480 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A38EFF61FEA7BA000F8D480 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000604A42133F5D7005D2AC9 /* WWLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWLog.swift; sourceTree = "<group>"; };
 		0049D37621240160003DD0CE /* PermissionManagerProtocol+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PermissionManagerProtocol+Extension.swift"; sourceTree = "<group>"; };
 		4A38EFF11FEA7BA000F8D480 /* WWRequestPermission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWRequestPermission.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A38EFF41FEA7BA000F8D480 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				4AE2CCB91FF3BD4E004108A6 /* Permissions.swift */,
 				4A97A8FE2075B4AA00BFF02C /* PermissionProtocol.swift */,
 				4AE2CCBA1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift */,
+				000604A42133F5D7005D2AC9 /* WWLog.swift */,
 			);
 			path = WWPermissionManager;
 			sourceTree = SOURCE_ROOT;
@@ -185,6 +188,7 @@
 				4AE2CCBD1FF3BD4E004108A6 /* RequestPermissionLocationHandler.swift in Sources */,
 				4A97A9012075B4E700BFF02C /* PermissionManagerProtocol.swift in Sources */,
 				4A97A8FF2075B4AA00BFF02C /* PermissionProtocol.swift in Sources */,
+				000604A52133F5D7005D2AC9 /* WWLog.swift in Sources */,
 				4AE2CCBE1FF3BD4E004108A6 /* PermissionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

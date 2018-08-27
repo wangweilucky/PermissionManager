@@ -60,5 +60,16 @@ fileprivate func getManagerForPermission(_ permission: RequestPermissionType) ->
         return WWContactsPermission()
     case .reminders:
         return WWRemindersPermission()
+        
+    case .motion:
+        return WWMotionPermission()
+    case .health:
+        return WWAppleMusicPermission()
+    case .healthShare:
+        return WWRemindersPermission()
+    case .bluetooth:
+        return WWRemindersPermission()
+    case .appleMusic:
+        return WWRemindersPermission()
     }
 }

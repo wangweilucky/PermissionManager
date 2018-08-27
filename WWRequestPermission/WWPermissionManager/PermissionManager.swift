@@ -20,7 +20,13 @@ public enum RequestPermissionType {
     case contacts
     case reminders
     case calendar
+    case motion
+    case health
+    case healthShare
+    case bluetooth
+    case appleMusic
 }
+
 
 public struct PermissionsManager{}
 
