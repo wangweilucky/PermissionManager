@@ -35,7 +35,7 @@ public extension PermissionStatusProtocol {
     }
 }
 
-// 公共方法
+// 工厂方法
 fileprivate func getManagerForPermission(_ permission: RequestPermissionType) -> PermissionProtocol {
     
     // 分别获取各个权限

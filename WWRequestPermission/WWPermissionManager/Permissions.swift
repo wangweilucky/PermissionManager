@@ -284,11 +284,7 @@ class WWLocationPermission: PermissionProtocol {
     }
     
     var type: WWLocationType
-    
-    lazy var locationManager: CLLocationManager =  {
-        return CLLocationManager()
-    }()
-    
+
     init(type: WWLocationType) {
         
         self.type = type
@@ -317,34 +313,38 @@ class WWLocationPermission: PermissionProtocol {
     func isNotDetermined() -> Bool {
         switch type {
         case .Always:
-            return PermissionAlwaysLocationHandler().isNotDetermined()
+            return PermissionAlwaysLocationHandler.share.isNotDetermined()
         case .WhenInUse:
-            return PermissionWhenInUseLocationHandler().isNotDetermined()
+            return PermissionWhenInUseLocationHandler.share.isNotDetermined()
         case .AlwaysWithBackground:
-            return PermissionLocationWithBackgroundHandler().isNotDetermined()
+            return PermissionLocationWithBackgroundHandler.share.isNotDetermined()
         }
     }
     
     func isAuthorized() -> Bool {
         switch type {
         case .Always:
-            return PermissionAlwaysLocationHandler().isAuthorized()
+            return PermissionAlwaysLocationHandler.share.isAuthorized()
         case .WhenInUse:
-            return PermissionWhenInUseLocationHandler().isAuthorized()
+            return PermissionWhenInUseLocationHandler.share.isAuthorized()
         case .AlwaysWithBackground:
-            return PermissionLocationWithBackgroundHandler().isAuthorized()
+            return PermissionLocationWithBackgroundHandler.share.isAuthorized()
         }
     }
     
     func isRestrictOrDenied() -> Bool {
         switch type {
         case .Always:
-            return PermissionAlwaysLocationHandler().isRestrictOrDenied()
+            return PermissionAlwaysLocationHandler.share.isRestrictOrDenied()
         case .WhenInUse:
-            return PermissionWhenInUseLocationHandler().isRestrictOrDenied()
+            return PermissionWhenInUseLocationHandler.share.isRestrictOrDenied()
         case .AlwaysWithBackground:
-            return PermissionLocationWithBackgroundHandler().isRestrictOrDenied()
+            return PermissionLocationWithBackgroundHandler.share.isRestrictOrDenied()
         }
+    }
+    
+    deinit {
+        
     }
 }
 

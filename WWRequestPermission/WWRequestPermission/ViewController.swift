@@ -66,9 +66,9 @@ private let Calendar   = "日历权限"
 
 
 private let noEnableColor = UIColor.init(red: 85.0/255.0,
-                                                     green: 104.0/255.0,
-                                                     blue: 220.0/255.0,
-                                                     alpha: 1)
+                                         green: 104.0/255.0,
+                                         blue: 220.0/255.0,
+                                         alpha: 1)
 private let enableColor = UIColor.init(red: 0,
                                        green: 0,
                                        blue: 0,
@@ -128,7 +128,7 @@ class ViewController: UIViewController {
         showButtonUI(sender: locationWhenInuseBtn,
                      bool: PermissionsManager.isAuthorized(.locationWhenInUse))
     }
-
+    
     func locationAlwaysPermission() {
         showButtonUI(sender: locationAlwaysBtn,
                      bool: PermissionsManager.isAuthorized(.locationAlways))
@@ -306,7 +306,7 @@ extension ViewController {
     // 1. Privacy - Location Always and When In Use Usage Description
     // 2. targets - Capabilities - Background Modes - location Update 打钩
     @IBAction func locationBackgroundPermissionRequest(_ sender: UIButton) {
-       
+        
         if PermissionsManager.isRestrictOrDenied(.locationWithBackground) {
             PermissionsManager.jumpSetting()
             return
